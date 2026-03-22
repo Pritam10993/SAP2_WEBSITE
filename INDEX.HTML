@@ -95,45 +95,66 @@
       <li class="nav-item">
         <button class="nav-link-btn">Industries <i class="bi bi-chevron-down chevron"></i></button>
         <div class="mega-drop">
-          <div class="mega-wrap">
+          <div class="mega-wrap" style="gap:2rem">
             <div class="mega-label-col"><div class="mega-label">Our Industries</div></div>
+
+            <!-- Links columns -->
             <div class="mega-content">
               <div class="mega-cols cols-3">
                 <div>
                   <div class="mega-col-title">Discrete</div>
-                  <button class="mega-link" onclick="showDetail('high-tech')">High Tech</button>
-                  <button class="mega-link" onclick="showDetail('ind-mfg')">Industrial Manufacturing</button>
-                  <button class="mega-link" onclick="showDetail('aerospace')">Aerospace & Defense</button>
-                  <button class="mega-link" onclick="showDetail('automotive')">Automotive</button>
+                  <button class="mega-link" onclick="showDetail('high-tech')" onmouseenter="setIndustryImg('https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80','High Tech','Semiconductors, software & electronics')">High Tech</button>
+                  <button class="mega-link" onclick="showDetail('ind-mfg')" onmouseenter="setIndustryImg('https://images.unsplash.com/photo-1565043666747-69f6646db940?w=600&q=80','Industrial Manufacturing','Smart factories & Industry 4.0')">Industrial Manufacturing</button>
+                  <button class="mega-link" onclick="showDetail('aerospace')" onmouseenter="setIndustryImg('https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?w=600&q=80','Aerospace & Defense','MRO, compliance & program management')">Aerospace & Defense</button>
+                  <button class="mega-link" onclick="showDetail('automotive')" onmouseenter="setIndustryImg('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80','Automotive','EV transformation & supply chain')">Automotive</button>
                   <div class="mega-col-title mt-3">Consumer</div>
-                  <button class="mega-link" onclick="showDetail('consumer-prod')">Consumer Products</button>
-                  <button class="mega-link" onclick="showDetail('wholesale')">Wholesale Distribution</button>
-                  <button class="mega-link" onclick="showDetail('life-science')">Life Science</button>
-                  <button class="mega-link" onclick="showDetail('retail')">Retail</button>
+                  <button class="mega-link" onclick="showDetail('consumer-prod')" onmouseenter="setIndustryImg('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80','Consumer Products','Trade promotion & DTC commerce')">Consumer Products</button>
+                  <button class="mega-link" onclick="showDetail('wholesale')" onmouseenter="setIndustryImg('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80','Wholesale Distribution','Warehouse & logistics management')">Wholesale Distribution</button>
+                  <button class="mega-link" onclick="showDetail('life-science')" onmouseenter="setIndustryImg('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=80','Life Science','GxP compliance & clinical trials')">Life Science</button>
+                  <button class="mega-link" onclick="showDetail('retail')" onmouseenter="setIndustryImg('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=80','Retail','Unified commerce & loyalty')">Retail</button>
                 </div>
                 <div>
                   <div class="mega-col-title">Energy & Natural Resources</div>
-                  <button class="mega-link" onclick="showDetail('chemicals')">Chemicals</button>
-                  <button class="mega-link" onclick="showDetail('oil-gas')">Oil, Gas & Energy</button>
-                  <button class="mega-link" onclick="showDetail('mill')">Mill Products</button>
-                  <button class="mega-link" onclick="showDetail('utilities')">Utilities</button>
+                  <button class="mega-link" onclick="showDetail('chemicals')" onmouseenter="setIndustryImg('https://images.unsplash.com/photo-1611270629569-8b357cb88da9?w=600&q=80','Chemicals','Recipe management & EHS compliance')">Chemicals</button>
+                  <button class="mega-link" onclick="showDetail('oil-gas')" onmouseenter="setIndustryImg('https://images.unsplash.com/photo-1513828583688-c52646db42da?w=600&q=80','Oil, Gas & Energy','Asset management & sustainability')">Oil, Gas & Energy</button>
+                  <button class="mega-link" onclick="showDetail('mill')" onmouseenter="setIndustryImg('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&q=80','Mill Products','Steel, aluminum & paper industries')">Mill Products</button>
+                  <button class="mega-link" onclick="showDetail('utilities')" onmouseenter="setIndustryImg('https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=600&q=80','Utilities','Smart grid & energy transition')">Utilities</button>
                   <div class="mega-col-title mt-3">Public Services</div>
-                  <button class="mega-link" onclick="showDetail('healthcare')">Health Care</button>
-                  <button class="mega-link" onclick="showDetail('higher-edu')">Higher Education</button>
-                  <button class="mega-link" onclick="showDetail('govt')">Federal & National Government</button>
+                  <button class="mega-link" onclick="showDetail('healthcare')" onmouseenter="setIndustryImg('https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=600&q=80','Health Care','Patient management & clinical ops')">Health Care</button>
+                  <button class="mega-link" onclick="showDetail('higher-edu')" onmouseenter="setIndustryImg('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=600&q=80','Higher Education','Student lifecycle & campus ops')">Higher Education</button>
+                  <button class="mega-link" onclick="showDetail('govt')" onmouseenter="setIndustryImg('https://images.unsplash.com/photo-1523292562811-8fa7962a78c8?w=600&q=80','Federal Government','Grants, compliance & citizen services')">Federal & National Government</button>
                 </div>
                 <div>
                   <div class="mega-col-title">Services</div>
-                  <button class="mega-link" onclick="showDetail('prof-services')">Professional Services</button>
-                  <button class="mega-link" onclick="showDetail('transport')">Transport & Logistics</button>
-                  <button class="mega-link" onclick="showDetail('eco')">Engineering, Construction & Ops</button>
-                  <button class="mega-link" onclick="showDetail('travel')">Passenger Travel & Leisure</button>
+                  <button class="mega-link" onclick="showDetail('prof-services')" onmouseenter="setIndustryImg('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80','Professional Services','Project delivery & resource management')">Professional Services</button>
+                  <button class="mega-link" onclick="showDetail('transport')" onmouseenter="setIndustryImg('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=600&q=80','Transport & Logistics','End-to-end visibility & TMS')">Transport & Logistics</button>
+                  <button class="mega-link" onclick="showDetail('eco')" onmouseenter="setIndustryImg('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80','Engineering & Construction','Project & asset management')">Engineering, Construction & Ops</button>
+                  <button class="mega-link" onclick="showDetail('travel')" onmouseenter="setIndustryImg('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600&q=80','Passenger Travel','Revenue management & loyalty')">Passenger Travel & Leisure</button>
                   <div class="mega-col-title mt-3">Financial Services</div>
-                  <button class="mega-link" onclick="showDetail('banking')">Banking</button>
-                  <button class="mega-link" onclick="showDetail('insurance')">Insurance</button>
+                  <button class="mega-link" onclick="showDetail('banking')" onmouseenter="setIndustryImg('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80','Banking','Core banking & risk management')">Banking</button>
+                  <button class="mega-link" onclick="showDetail('insurance')" onmouseenter="setIndustryImg('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80','Insurance','Policy, claims & compliance')">Insurance</button>
                 </div>
               </div>
             </div>
+
+            <!-- Image preview panel -->
+            <div class="ind-img-panel" id="indImgPanel">
+              <div class="ind-img-wrap">
+                <img id="indImg" src="https://images.unsplash.com/photo-1565043666747-69f6646db940?w=600&q=80" alt="Industry"/>
+                <div class="ind-img-overlay">
+                  <div class="ind-img-tag" id="indImgTag">Industrial Manufacturing</div>
+                  <div class="ind-img-sub" id="indImgSub">Smart factories & Industry 4.0</div>
+                </div>
+              </div>
+              <div class="ind-img-stats">
+                <div class="ind-stat"><span class="ind-stat-num">440K+</span><span class="ind-stat-lbl">Clients</span></div>
+                <div class="ind-stat-div"></div>
+                <div class="ind-stat"><span class="ind-stat-num">25+</span><span class="ind-stat-lbl">Industries</span></div>
+                <div class="ind-stat-div"></div>
+                <div class="ind-stat"><span class="ind-stat-num">180+</span><span class="ind-stat-lbl">Countries</span></div>
+              </div>
+            </div>
+
           </div>
         </div>
       </li>
@@ -394,14 +415,95 @@
         <p class="sec-sub mt-2">SAP delivers industry-specific solutions tailored to your unique challenges.</p>
       </div>
       <div class="row g-3">
-        <div class="col-6 col-md-4 col-lg-3"><div class="ind-card" onclick="showDetail('banking')"><i class="bi bi-bank2"></i><span>Banking & Finance</span></div></div>
-        <div class="col-6 col-md-4 col-lg-3"><div class="ind-card" onclick="showDetail('healthcare')"><i class="bi bi-heart-pulse-fill"></i><span>Healthcare</span></div></div>
-        <div class="col-6 col-md-4 col-lg-3"><div class="ind-card" onclick="showDetail('ind-mfg')"><i class="bi bi-gear-wide-connected"></i><span>Manufacturing</span></div></div>
-        <div class="col-6 col-md-4 col-lg-3"><div class="ind-card" onclick="showDetail('retail')"><i class="bi bi-shop-window"></i><span>Retail</span></div></div>
-        <div class="col-6 col-md-4 col-lg-3"><div class="ind-card" onclick="showDetail('oil-gas')"><i class="bi bi-fuel-pump-fill"></i><span>Energy & Utilities</span></div></div>
-        <div class="col-6 col-md-4 col-lg-3"><div class="ind-card" onclick="showDetail('aerospace')"><i class="bi bi-airplane-fill"></i><span>Aerospace</span></div></div>
-        <div class="col-6 col-md-4 col-lg-3"><div class="ind-card" onclick="showDetail('govt')"><i class="bi bi-building-fill"></i><span>Public Sector</span></div></div>
-        <div class="col-6 col-md-4 col-lg-3"><div class="ind-card" onclick="showDetail('high-tech')"><i class="bi bi-broadcast-pin"></i><span>High Tech</span></div></div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="ind-card-img" onclick="showDetail('banking')">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=500&q=80" alt="Banking & Finance"/>
+            <div class="ind-card-img-overlay">
+              <div class="ind-card-img-icon"><i class="bi bi-bank2"></i></div>
+              <div class="ind-card-img-title">Banking & Finance</div>
+              <div class="ind-card-img-sub">Core banking · Risk · Compliance</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="ind-card-img" onclick="showDetail('healthcare')">
+            <img src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=500&q=80" alt="Healthcare"/>
+            <div class="ind-card-img-overlay">
+              <div class="ind-card-img-icon"><i class="bi bi-heart-pulse-fill"></i></div>
+              <div class="ind-card-img-title">Healthcare</div>
+              <div class="ind-card-img-sub">Patient care · Clinical ops · Supply chain</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="ind-card-img" onclick="showDetail('ind-mfg')">
+            <img src="https://images.unsplash.com/photo-1565043666747-69f6646db940?w=500&q=80" alt="Manufacturing"/>
+            <div class="ind-card-img-overlay">
+              <div class="ind-card-img-icon"><i class="bi bi-gear-wide-connected"></i></div>
+              <div class="ind-card-img-title">Manufacturing</div>
+              <div class="ind-card-img-sub">Smart factory · MES · Quality mgmt</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="ind-card-img" onclick="showDetail('retail')">
+            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=500&q=80" alt="Retail"/>
+            <div class="ind-card-img-overlay">
+              <div class="ind-card-img-icon"><i class="bi bi-shop-window"></i></div>
+              <div class="ind-card-img-title">Retail</div>
+              <div class="ind-card-img-sub">Unified commerce · Loyalty · Inventory</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="ind-card-img" onclick="showDetail('oil-gas')">
+            <img src="https://images.unsplash.com/photo-1513828583688-c52646db42da?w=500&q=80" alt="Energy & Utilities"/>
+            <div class="ind-card-img-overlay">
+              <div class="ind-card-img-icon"><i class="bi bi-fuel-pump-fill"></i></div>
+              <div class="ind-card-img-title">Energy & Utilities</div>
+              <div class="ind-card-img-sub">Asset mgmt · Grid · Sustainability</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="ind-card-img" onclick="showDetail('aerospace')">
+            <img src="https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?w=500&q=80" alt="Aerospace"/>
+            <div class="ind-card-img-overlay">
+              <div class="ind-card-img-icon"><i class="bi bi-airplane-fill"></i></div>
+              <div class="ind-card-img-title">Aerospace</div>
+              <div class="ind-card-img-sub">MRO · Compliance · Program mgmt</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="ind-card-img" onclick="showDetail('govt')">
+            <img src="https://images.unsplash.com/photo-1523292562811-8fa7962a78c8?w=500&q=80" alt="Public Sector"/>
+            <div class="ind-card-img-overlay">
+              <div class="ind-card-img-icon"><i class="bi bi-building-fill"></i></div>
+              <div class="ind-card-img-title">Public Sector</div>
+              <div class="ind-card-img-sub">Grants · Citizen services · Audit</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="ind-card-img" onclick="showDetail('high-tech')">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=80" alt="High Tech"/>
+            <div class="ind-card-img-overlay">
+              <div class="ind-card-img-icon"><i class="bi bi-broadcast-pin"></i></div>
+              <div class="ind-card-img-title">High Tech</div>
+              <div class="ind-card-img-sub">Semiconductors · Software · PLM</div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>

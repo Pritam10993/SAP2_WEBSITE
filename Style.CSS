@@ -73,6 +73,25 @@ button{cursor:pointer}
 .mega-card span{font-size:0.78rem;color:#777;line-height:1.4}
 .mt-3{margin-top:1rem!important}
 
+/* ── INDUSTRY IMAGE PANEL ── */
+.ind-img-panel{width:220px;min-width:220px;flex-shrink:0;display:flex;flex-direction:column;gap:0.8rem}
+.ind-img-wrap{position:relative;border-radius:12px;overflow:hidden;height:160px;flex-shrink:0}
+.ind-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease,opacity 0.25s ease;display:block}
+.ind-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0) 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:0.8rem}
+.ind-img-tag{font-family:'Sora',sans-serif;font-size:0.78rem;font-weight:700;color:#fff;line-height:1.3;margin-bottom:0.2rem}
+.ind-img-sub{font-size:0.68rem;color:rgba(255,255,255,0.75);line-height:1.4;font-family:'DM Sans',sans-serif}
+.ind-img-stats{display:flex;align-items:center;justify-content:space-between;background:#f9fafb;border:1px solid #f3f4f6;border-radius:10px;padding:0.7rem 0.8rem}
+.ind-stat{display:flex;flex-direction:column;align-items:center;gap:1px}
+.ind-stat-num{font-family:'Sora',sans-serif;font-size:0.88rem;font-weight:800;color:#111827;line-height:1}
+.ind-stat-lbl{font-size:0.6rem;color:#9ca3af;text-transform:uppercase;letter-spacing:0.05em;font-family:'DM Sans',sans-serif}
+.ind-stat-div{width:1px;height:28px;background:#e5e7eb}
+.ind-img-wrap img.fading{opacity:0;transform:scale(1.04)}
+
+/* Hide image panel inside mobile menu */
+@media(max-width:991px){
+  .ind-img-panel{display:none}
+}
+
 /* ══════════════════════════════════════
    PAGE SYSTEM
 ══════════════════════════════════════ */
@@ -179,13 +198,69 @@ button{cursor:pointer}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
 /* ══════════════════════════════════════
-   INDUSTRY CARDS
+   INDUSTRY IMAGE CARDS
 ══════════════════════════════════════ */
-.ind-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem 1rem;text-align:center;cursor:pointer;transition:all 0.25s;display:flex;flex-direction:column;align-items:center;gap:0.7rem}
-.ind-card i{font-size:1.8rem;color:var(--muted);transition:color 0.25s}
-.ind-card span{font-family:'Sora',sans-serif;font-size:0.8rem;font-weight:600;color:var(--text);line-height:1.3}
-.ind-card:hover{border-color:var(--blue);background:rgba(0,112,243,0.06);transform:translateY(-4px)}
-.ind-card:hover i{color:var(--blue)}
+.ind-card-img{
+  position:relative;border-radius:14px;overflow:hidden;
+  cursor:pointer;height:200px;display:block;
+  box-shadow:0 4px 20px rgba(0,0,0,0.25);
+  transition:transform 0.32s ease,box-shadow 0.32s ease;
+}
+.ind-card-img:hover{
+  transform:translateY(-6px);
+  box-shadow:0 16px 40px rgba(0,0,0,0.45);
+}
+.ind-card-img img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform 0.5s ease,filter 0.35s ease;
+  filter:brightness(0.7) saturate(1.1);
+}
+.ind-card-img:hover img{
+  transform:scale(1.07);
+  filter:brightness(0.55) saturate(1.2);
+}
+.ind-card-img-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,0.78) 0%,rgba(0,0,0,0.18) 55%,rgba(0,0,0,0) 100%);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:1rem 1rem 1.1rem;
+  transition:background 0.3s ease;
+}
+.ind-card-img:hover .ind-card-img-overlay{
+  background:linear-gradient(to top,rgba(155,28,28,0.82) 0%,rgba(100,10,10,0.3) 60%,rgba(0,0,0,0) 100%);
+}
+.ind-card-img-icon{
+  font-size:1.5rem;color:#fff;margin-bottom:0.4rem;
+  opacity:0.9;transition:transform 0.3s ease,opacity 0.3s ease;
+  display:block;line-height:1;
+}
+.ind-card-img:hover .ind-card-img-icon{
+  transform:translateY(-3px);opacity:1;
+}
+.ind-card-img-title{
+  font-family:'Sora',sans-serif;font-size:0.92rem;font-weight:700;
+  color:#fff;line-height:1.25;margin-bottom:0.25rem;
+}
+.ind-card-img-sub{
+  font-size:0.68rem;color:rgba(255,255,255,0);
+  font-family:'DM Sans',sans-serif;line-height:1.4;
+  transition:color 0.3s ease,transform 0.3s ease;
+  transform:translateY(4px);
+}
+.ind-card-img:hover .ind-card-img-sub{
+  color:rgba(255,255,255,0.88);
+  transform:translateY(0);
+}
+
+/* Responsive heights */
+@media(max-width:576px){
+  .ind-card-img{height:155px}
+  .ind-card-img-title{font-size:0.82rem}
+  .ind-card-img-icon{font-size:1.2rem}
+}
+@media(min-width:577px) and (max-width:991px){
+  .ind-card-img{height:175px}
+}
 
 /* ══════════════════════════════════════
    INSIGHT CARDS
