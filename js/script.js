@@ -1,4 +1,53 @@
 /* ══════════════════════════════════════
+   SERVICE IMAGE PANEL
+══════════════════════════════════════ */
+let svcImgTimer = null;
+function setSvcImg(url, title, sub){
+  const img  = document.getElementById('svcImg');
+  const tag  = document.getElementById('svcImgTag');
+  const subEl= document.getElementById('svcImgSub');
+  if(!img) return;
+  clearTimeout(svcImgTimer);
+  img.classList.add('fading');
+  svcImgTimer = setTimeout(()=>{
+    img.src = url;
+    if(tag)  tag.textContent  = title;
+    if(subEl) subEl.textContent = sub;
+    img.onload = ()=> img.classList.remove('fading');
+    if(img.complete) img.classList.remove('fading');
+  }, 200);
+}
+
+/* ══════════════════════════════════════
+   INDUSTRY IMAGE PANEL
+══════════════════════════════════════ */
+let indImgTimer = null;
+
+function setIndustryImg(url, title, sub){
+  const img  = document.getElementById('indImg');
+  const tag  = document.getElementById('indImgTag');
+  const subEl= document.getElementById('indImgSub');
+  if(!img) return;
+
+  clearTimeout(indImgTimer);
+
+  // Fade out
+  img.classList.add('fading');
+
+  indImgTimer = setTimeout(()=>{
+    // Swap source while faded
+    img.src = url;
+    if(tag)  tag.textContent  = title;
+    if(subEl) subEl.textContent = sub;
+
+    // Preload then fade in
+    img.onload = ()=> img.classList.remove('fading');
+    // Fallback in case already cached
+    if(img.complete) img.classList.remove('fading');
+  }, 200);
+}
+
+/* ══════════════════════════════════════
    JOB LISTINGS DATA
 ══════════════════════════════════════ */
 const JOBS = [
@@ -90,26 +139,352 @@ const pages = {
   'clients':{tag:'Explore Us',parent:'Explore Us',title:'How We Work With Clients',desc:'A proven, collaborative engagement model delivering measurable outcomes from day one.',body:`<div class="detail-section"><div class="detail-grid"><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-search"></i></div><h5>1. Discovery</h5><p>Deep-dive workshops to understand your business, challenges, and technology landscape.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-map-fill"></i></div><h5>2. Roadmap</h5><p>Co-create a transformation roadmap with clear milestones, KPIs, and risk strategies.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-rocket-fill"></i></div><h5>3. Agile Delivery</h5><p>Iterative sprint-based delivery ensuring early value realization and alignment.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-arrow-repeat"></i></div><h5>4. Optimize</h5><p>Post go-live optimization, hypercare support, and continuous improvement cycles.</p></div></div></div>`},
   'investors':{tag:'Explore Us',parent:'Explore Us',title:'Investor Relations',desc:'Transparent financial performance and strategic growth plans for our investors.',body:`<div class="detail-section"><div class="stats-row"><div class="stat-box"><h3>€33B+</h3><p>Annual Revenue</p></div><div class="stat-box"><h3>28%</h3><p>YoY Growth</p></div><div class="stat-box"><h3>35%</h3><p>EBITDA Margin</p></div><div class="stat-box"><h3>AA</h3><p>Credit Rating</p></div></div></div><div class="detail-section"><div class="detail-grid"><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-graph-up-arrow"></i></div><h5>Consistent Growth</h5><p>20+ consecutive quarters of double-digit revenue growth driven by cloud adoption.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-cloud-fill"></i></div><h5>Cloud-First Strategy</h5><p>75% of new bookings are cloud-based, driving predictable recurring revenue.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-globe2"></i></div><h5>Market Expansion</h5><p>Active expansion into high-growth markets in Southeast Asia, Middle East, and Latin America.</p></div></div></div>`},
   'analyst':{tag:'Explore Us',parent:'Explore Us',title:'Analyst Recognitions',desc:'Top-tier recognition from Gartner, Forrester, IDC, and leading analyst firms.',body:`<div class="detail-section"><div class="detail-grid"><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-bar-chart-fill"></i></div><h5>Gartner Magic Quadrant</h5><p>Positioned as a Visionary in 2024 Gartner Magic Quadrant for SAP Implementation Services.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-lightning-fill"></i></div><h5>Forrester Wave</h5><p>Recognized as Strong Performer in The Forrester Wave for SAP Services Providers 2024.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-patch-check-fill"></i></div><h5>IDC MarketScape</h5><p>Named Major Player in IDC MarketScape for Worldwide SAP Implementation Services.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-star-fill"></i></div><h5>ISG Provider Lens</h5><p>Leader designation in ISG Provider Lens SAP Ecosystem Partners 2024 for APAC.</p></div></div></div>`},
-  's4hana':{tag:'Enterprise Application',parent:'Services',title:'SAP S/4HANA',desc:'The intelligent ERP suite — real-time analytics, AI automation, and cloud-native architecture.',body:`<div class="detail-section"><div class="stats-row"><div class="stat-box"><h3>60%</h3><p>Faster Close</p></div><div class="stat-box"><h3>40%</h3><p>IT Cost Reduction</p></div><div class="stat-box"><h3>3x</h3><p>Faster Reporting</p></div><div class="stat-box"><h3>99.9%</h3><p>Uptime SLA</p></div></div></div><div class="detail-section"><div class="detail-grid"><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-bar-chart-line-fill"></i></div><h5>Finance & Accounting</h5><p>Universal journal, real-time reporting, automated period-end close, and predictive accounting.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-gear-fill"></i></div><h5>Manufacturing</h5><p>Production planning, shop floor execution, quality management, and IoT-connected operations.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-truck-front-fill"></i></div><h5>Supply Chain</h5><p>End-to-end visibility, demand sensing, inventory optimization, and logistics coordination.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-person-badge-fill"></i></div><h5>Human Capital</h5><p>Core HR, payroll, and time management fully integrated with all business processes.</p></div></div></div>`},
-  'rise-sap':{tag:'Enterprise Application',parent:'Services',title:'RISE with SAP',desc:'Your complete cloud ERP as a service — everything you need to become an intelligent enterprise.',body:`<div class="detail-section"><div class="detail-grid"><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-cloud-check-fill"></i></div><h5>SAP S/4HANA Cloud</h5><p>Private or public edition cloud ERP fully managed by SAP with 99.9% uptime guaranteed.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-cpu-fill"></i></div><h5>Business Technology Platform</h5><p>Integration, extension, analytics, and AI capabilities to connect your intelligent enterprise.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-tools"></i></div><h5>Tools & Services</h5><p>SAP Signavio, LeanIX, and automated migration tools to accelerate your transformation.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-headset"></i></div><h5>Premium Support</h5><p>SAP Enterprise Support with 24/7 access to SAP experts and proactive guidance.</p></div></div></div>`},
-  'grow-sap':{tag:'Enterprise Application',parent:'Services',title:'GROW with SAP',desc:'Fast, affordable SAP S/4HANA Cloud for mid-market companies — go live in weeks, not years.',body:`<div class="detail-section"><div class="detail-grid"><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-speedometer2"></i></div><h5>Rapid Deployment</h5><p>Pre-configured best practices enable go-live in as little as 8 weeks with minimal risk.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-currency-dollar"></i></div><h5>Affordable Subscription</h5><p>Predictable monthly pricing with no hidden costs — finance as an operational expense.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-arrow-up-circle-fill"></i></div><h5>Scalable Platform</h5><p>Start with what you need and expand as your business grows without re-implementation.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-cloud-check-fill"></i></div><h5>Always Current</h5><p>Continuous cloud updates ensure you always run the latest SAP S/4HANA innovations.</p></div></div></div>`},
-  'eos':{tag:'Enterprise Application',parent:'Services',title:'EOS Transformation',desc:'End-to-end Enterprise Operations Suite transformation modernizing your legacy SAP environment.',body:`<div class="detail-section"><div class="detail-grid"><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-diagram-3-fill"></i></div><h5>Current State Analysis</h5><p>Deep assessment of existing SAP ECC or R/3 landscapes to identify transformation opportunities.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-map-fill"></i></div><h5>Transformation Blueprint</h5><p>Migration path from legacy systems to SAP S/4HANA with business case and TCO analysis.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-rocket-fill"></i></div><h5>Phased Execution</h5><p>Risk-managed, phased approach ensuring business continuity throughout the migration.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-graph-up-arrow"></i></div><h5>Value Realization</h5><p>Continuous measurement of business outcomes against defined KPIs to ensure maximum ROI.</p></div></div></div>`},
-  'ams':{tag:'Enterprise Application',parent:'Services',title:'Application Management Services',desc:'Keep your SAP landscape at peak performance with 24/7 managed services.',body:`<div class="detail-section"><div class="stats-row"><div class="stat-box"><h3>24/7</h3><p>Support</p></div><div class="stat-box"><h3>99.9%</h3><p>Uptime</p></div><div class="stat-box"><h3>4hr</h3><p>Avg Response</p></div><div class="stat-box"><h3>95%</h3><p>First-Call Resolution</p></div></div></div><div class="detail-section"><div class="detail-grid"><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-headset"></i></div><h5>Incident Management</h5><p>24/7 incident logging, prioritization, and resolution with defined SLAs for all severity levels.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-graph-up-arrow"></i></div><h5>Proactive Monitoring</h5><p>AI-powered monitoring identifying and resolving issues before they impact operations.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-arrow-up-circle-fill"></i></div><h5>Continuous Enhancement</h5><p>Regular optimizations, security patches, and enhancements to maximize your SAP investment.</p></div></div></div>`},
-  'supply-chain':{tag:'Operations Services',parent:'Services',title:'Supply Chain Transformation',desc:'Build a resilient, intelligent supply chain that drives competitive advantage.',body:`<div class="detail-section"><div class="detail-grid"><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-graph-up"></i></div><h5>Demand Planning</h5><p>AI-powered forecasting reducing inventory waste while ensuring product availability.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-box-fill"></i></div><h5>Inventory Optimization</h5><p>Multi-echelon management reducing carrying costs while improving service levels.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-truck-front-fill"></i></div><h5>Logistics Management</h5><p>Transportation planning, carrier management, and last-mile delivery optimization.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-people-fill"></i></div><h5>Supplier Collaboration</h5><p>Digital portal for real-time communication, order management, and performance tracking.</p></div></div></div>`},
-  'procurement':{tag:'Operations Services',parent:'Services',title:'Procurement Transformation',desc:'Digitize and optimize your entire source-to-pay process.',body:`<div class="detail-section"><div class="detail-grid"><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-search"></i></div><h5>Strategic Sourcing</h5><p>AI-driven spend analysis, supplier discovery, and competitive bidding to optimize costs.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-file-text-fill"></i></div><h5>Contract Management</h5><p>Centralized repository with automated alerts, compliance tracking, and renewal management.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-receipt-cutoff"></i></div><h5>Invoice Automation</h5><p>AI-powered processing reducing manual effort by 90% and accelerating payment cycles.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-shield-check-fill"></i></div><h5>Supplier Risk</h5><p>Real-time risk scoring, ESG compliance monitoring, and automated risk mitigation.</p></div></div></div>`},
-  'finance-trans':{tag:'Operations Services',parent:'Services',title:'Finance Transformation',desc:'Modernize your finance function with automated processes and real-time insights.',body:`<div class="detail-section"><div class="detail-grid"><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-calculator-fill"></i></div><h5>Record-to-Report</h5><p>Automated journal entries, intercompany reconciliation, and financial close acceleration.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-receipt-cutoff"></i></div><h5>Order-to-Cash</h5><p>Intelligent billing, credit management, collections automation, and cash application.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-bar-chart-fill"></i></div><h5>FP&A Modernization</h5><p>Driver-based planning, rolling forecasts, and scenario modeling with SAP Analytics Cloud.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-shield-check-fill"></i></div><h5>Compliance & Controls</h5><p>Automated SOX controls, audit trail management, and regulatory reporting.</p></div></div></div>`},
-  'cloud-trans':{tag:'Digital Services',parent:'Services',title:'Cloud Transformation',desc:'Accelerate your journey to the cloud with a structured, risk-managed migration strategy.',body:`<div class="detail-section"><div class="detail-grid"><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-search"></i></div><h5>Cloud Readiness Assessment</h5><p>Evaluate infrastructure, applications, and data to build the optimal cloud migration roadmap.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-arrow-right-circle-fill"></i></div><h5>Lift & Shift Migration</h5><p>Move existing workloads to cloud with minimal changes for fast time-to-value.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-wrench-adjustable-fill"></i></div><h5>Re-platforming</h5><p>Optimize applications for cloud-native capabilities while maintaining core business logic.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-building-fill"></i></div><h5>Cloud-Native Build</h5><p>Build new applications using microservices, containers, and serverless architecture.</p></div></div></div>`},
-  'btp':{tag:'Digital Services',parent:'Services',title:'Business Technology Platform',desc:'Unified platform for integration, data management, analytics, AI, and application development.',body:`<div class="detail-section"><div class="detail-grid"><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-plug-fill"></i></div><h5>Integration Suite</h5><p>Connect SAP and third-party applications with pre-built integrations and event-driven architecture.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-database-fill"></i></div><h5>Data & Analytics</h5><p>SAP Analytics Cloud, Datasphere, and HANA Cloud for unified data management and BI.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-robot"></i></div><h5>AI & Automation</h5><p>Embedded AI services, intelligent document extraction, and RPA capabilities built-in.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-code-slash"></i></div><h5>Application Development</h5><p>Low-code/no-code tools and pro-code development on Cloud Foundry platform.</p></div></div></div>`},
-  'spend-mgmt':{tag:'Digital Services',parent:'Services',title:'Spend Management',desc:'Complete visibility and control over all enterprise spending with SAP Ariba solutions.',body:`<div class="detail-section"><div class="detail-grid"><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-pie-chart-fill"></i></div><h5>Spend Visibility</h5><p>360° view of all enterprise spending across categories, suppliers, and business units.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-people-fill"></i></div><h5>Supplier Network</h5><p>Access to the world's largest B2B network with 6M+ suppliers for better sourcing.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-currency-dollar"></i></div><h5>Cost Reduction</h5><p>AI-powered spend analysis identifying average savings of 8–12% across all categories.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-shield-check-fill"></i></div><h5>Compliance Control</h5><p>Policy enforcement, approval workflows, and audit-ready reporting for full governance.</p></div></div></div>`},
-  'data-eng':{tag:'Digiverz',parent:'Services',title:'Data Engineering & Science',desc:'Transform raw data into actionable intelligence with end-to-end data engineering.',body:`<div class="detail-section"><div class="detail-grid"><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-database-fill"></i></div><h5>Data Architecture</h5><p>Scalable data lakes, warehouses, and real-time streaming architectures on any cloud.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-robot"></i></div><h5>Machine Learning</h5><p>Custom ML model development, MLOps pipelines, and AI integration with SAP systems.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-bar-chart-fill"></i></div><h5>Advanced Analytics</h5><p>Predictive modeling, statistical analysis, and prescriptive analytics for smarter decisions.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-diagram-3-fill"></i></div><h5>Data Governance</h5><p>Master data management, quality frameworks, and lineage tracking for trusted data.</p></div></div></div>`},
-  'product-eng':{tag:'Digiverz',parent:'Services',title:'Product Engineering',desc:'Build world-class digital products with our full-stack engineering team.',body:`<div class="detail-section"><div class="detail-grid"><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-phone-fill"></i></div><h5>Mobile Development</h5><p>Native iOS/Android and cross-platform apps tightly integrated with SAP backends.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-code-slash"></i></div><h5>Web Applications</h5><p>Modern React, Angular, and Vue.js applications with SAP Fiori UX principles.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-gear-fill"></i></div><h5>API & Microservices</h5><p>RESTful APIs, GraphQL, and microservices architecture for scalable SAP extensions.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-shield-check-fill"></i></div><h5>DevSecOps</h5><p>Automated CI/CD pipelines, security scanning, and quality gates for reliable delivery.</p></div></div></div>`},
-  'cloud-eng':{tag:'Digiverz',parent:'Services',title:'Cloud Engineering',desc:'Architect, build, and operate enterprise-grade cloud infrastructure for SAP workloads.',body:`<div class="detail-section"><div class="detail-grid"><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-cloud-fill"></i></div><h5>Infrastructure as Code</h5><p>Terraform and Bicep templates for automated, repeatable SAP infrastructure provisioning.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-shield-check-fill"></i></div><h5>Cloud Security</h5><p>Zero-trust architecture, identity management, and security posture management.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-speedometer2"></i></div><h5>FinOps & Optimization</h5><p>Continuous cost optimization, right-sizing recommendations, and capacity management.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-arrow-repeat"></i></div><h5>Site Reliability</h5><p>SRE practices, automated incident response, and chaos engineering for resilience.</p></div></div></div>`},
-  'bpm':{tag:'Digiverz',parent:'Services',title:'Business Process Management',desc:'Discover, analyze, and optimize your business processes for maximum efficiency.',body:`<div class="detail-section"><div class="detail-grid"><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-diagram-3-fill"></i></div><h5>Process Discovery</h5><p>SAP Signavio-powered process mining to automatically discover and visualize real processes.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-robot"></i></div><h5>Intelligent Automation</h5><p>RPA, workflow automation, and AI-driven optimization to eliminate manual repetitive tasks.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-bar-chart-fill"></i></div><h5>Process Analytics</h5><p>Continuous monitoring, KPI tracking, and conformance checking to sustain improvements.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-pencil-fill"></i></div><h5>Process Design</h5><p>Collaborative modeling, simulation, and documentation for new or redesigned processes.</p></div></div></div>`},
-  'cx-trans':{tag:'Performance Services',parent:'Services',title:'CX Transformation',desc:'Reimagine every customer touchpoint with SAP\'s integrated customer experience suite.',body:`<div class="detail-section"><div class="detail-grid"><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-megaphone-fill"></i></div><h5>Marketing Automation</h5><p>Personalized campaigns, customer segmentation, and omnichannel marketing at scale.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-graph-up-arrow"></i></div><h5>Sales Enablement</h5><p>AI-driven opportunity management, configure-price-quote, and revenue forecasting.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-chat-dots-fill"></i></div><h5>Service Excellence</h5><p>Omnichannel service desk, field service management, and customer self-service portals.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-person-heart"></i></div><h5>Loyalty Management</h5><p>Real-time loyalty programs, personalized offers, and lifetime value optimization.</p></div></div></div>`},
-  'hr-trans':{tag:'Performance Services',parent:'Services',title:'HR Transformation',desc:'Build a future-ready workforce with SAP SuccessFactors — from hire to retire.',body:`<div class="detail-section"><div class="stats-row"><div class="stat-box"><h3>30%</h3><p>Hiring Reduction</p></div><div class="stat-box"><h3>25%</h3><p>HR Cost Savings</p></div><div class="stat-box"><h3>40%</h3><p>Engagement Boost</p></div><div class="stat-box"><h3>99%</h3><p>Payroll Accuracy</p></div></div></div><div class="detail-section"><div class="detail-grid"><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-person-check-fill"></i></div><h5>Talent Acquisition</h5><p>AI-powered recruiting, intelligent candidate matching, and seamless onboarding.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-star-fill"></i></div><h5>Performance Management</h5><p>Continuous feedback, goal alignment, and compensation management driving high performance.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-currency-dollar"></i></div><h5>Payroll & Benefits</h5><p>Global payroll across 50+ countries, benefits enrollment, and time management.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-mortarboard-fill"></i></div><h5>Learning & Development</h5><p>Personalized learning paths, skill gap analysis, and career development planning.</p></div></div></div>`},
-  'ehs':{tag:'Performance Services',parent:'Services',title:'Environment, Health & Safety',desc:'Protect your people, environment, and business with integrated EHS management.',body:`<div class="detail-section"><div class="detail-grid"><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-shield-check-fill"></i></div><h5>Incident Management</h5><p>Streamlined incident reporting, root cause analysis, and corrective action tracking.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-leaf-fill"></i></div><h5>Environmental Compliance</h5><p>Emissions tracking, waste management, and environmental reporting aligned with global regulations.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-clipboard-check-fill"></i></div><h5>Risk Assessment</h5><p>Systematic hazard identification, risk evaluation, and control measure management.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-bar-chart-fill"></i></div><h5>EHS Analytics</h5><p>Real-time dashboards and predictive analytics to drive proactive safety improvements.</p></div></div></div>`},
-  'ocm':{tag:'Performance Services',parent:'Services',title:'Organizational Change Management',desc:'Accelerate adoption and maximize ROI through people-centric SAP change management.',body:`<div class="detail-section"><div class="detail-grid"><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-people-fill"></i></div><h5>Stakeholder Engagement</h5><p>Structured stakeholder analysis, communication planning, and executive sponsorship alignment.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-mortarboard-fill"></i></div><h5>Training & Enablement</h5><p>Role-based training programs, e-learning content, and super-user networks for rapid adoption.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-graph-up-arrow"></i></div><h5>Adoption Measurement</h5><p>Usage analytics, adoption KPIs, and feedback mechanisms to track change progress.</p></div></div></div>`},
-  'biz-analytics':{tag:'Business Platforms',parent:'Services',title:'Business Analytics',desc:'Turn data into decisions with SAP Analytics Cloud — planning, BI, and predictive analytics.',body:`<div class="detail-section"><div class="detail-grid"><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-bar-chart-fill"></i></div><h5>Business Intelligence</h5><p>Self-service BI, interactive dashboards, and pixel-perfect reports connecting to any data source.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-calendar-check-fill"></i></div><h5>Planning & Budgeting</h5><p>Driver-based financial planning, rolling forecasts, and collaborative budgeting in one tool.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-graph-up-arrow"></i></div><h5>Predictive Analytics</h5><p>Built-in ML algorithms and smart predict features for forecasting and anomaly detection.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-phone-fill"></i></div><h5>Mobile Analytics</h5><p>Native mobile apps providing real-time insights anywhere, anytime, on any device.</p></div></div></div>`},
+  's4hana':{tag:'Enterprise Application',parent:'Services',title:'SAP S/4HANA',desc:'The intelligent ERP suite — real-time analytics, AI automation, and cloud-native architecture for the modern enterprise.',body:`
+    <div class="detail-section">
+      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80" alt="SAP S/4HANA" style="width:100%;height:320px;object-fit:cover;border-radius:14px;margin-bottom:2rem"/>
+      <div class="stats-row"><div class="stat-box"><h3>60%</h3><p>Faster Financial Close</p></div><div class="stat-box"><h3>40%</h3><p>IT Cost Reduction</p></div><div class="stat-box"><h3>3×</h3><p>Faster Reporting</p></div><div class="stat-box"><h3>99.9%</h3><p>Uptime SLA</p></div></div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">What is SAP S/4HANA?</div>
+      <p style="color:var(--muted);font-size:0.95rem;line-height:1.8;max-width:820px">SAP S/4HANA is the world's most advanced ERP system, built on SAP's proprietary in-memory HANA database. Unlike legacy ERP systems, S/4HANA processes transactions and analytics simultaneously in real time — eliminating the need for batch jobs, data duplication, and separate reporting systems. With embedded AI (SAP Joule), predictive analytics, and a simplified data model, S/4HANA transforms how enterprises plan, run, and optimise every business process across finance, supply chain, manufacturing, HR, and customer experience.</p>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">Core Capabilities</div>
+      <div class="detail-grid">
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-bar-chart-line-fill"></i></div><h5>Finance & Accounting</h5><p>Universal journal, real-time financial close, automated period-end processes, and SAP Green Ledger for carbon accounting embedded in every transaction.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-gear-fill"></i></div><h5>Manufacturing</h5><p>Production planning, shop floor execution, quality management, and IoT-connected operations with real-time OEE dashboards and predictive maintenance triggers.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-truck-front-fill"></i></div><h5>Supply Chain</h5><p>End-to-end supply chain visibility with demand sensing, inventory optimisation, and logistics coordination — all driven by embedded AI for autonomous decision-making.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-person-badge-fill"></i></div><h5>Human Capital Management</h5><p>Core HR, global payroll, time management, and workforce planning — natively integrated with all business processes for a single source of truth.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-robot"></i></div><h5>Embedded AI — SAP Joule</h5><p>SAP's generative AI copilot is deeply embedded across S/4HANA modules — answering natural language queries, automating document processing, and flagging anomalies before they impact the business.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-shield-check-fill"></i></div><h5>Compliance & Risk</h5><p>Built-in GRC controls, automated SOX compliance, audit trail management, and real-time regulatory reporting across 50+ countries.</p></div>
+      </div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">Deployment Options</div>
+      <div class="row g-3">
+        <div class="col-md-4"><div style="background:rgba(0,112,243,0.06);border:1px solid rgba(0,112,243,0.2);border-radius:12px;padding:1.4rem">
+          <div style="font-family:'Sora',sans-serif;font-weight:700;color:#fff;margin-bottom:0.5rem;font-size:0.92rem"><i class="bi bi-cloud-fill me-2" style="color:#0070f3"></i>Public Cloud</div>
+          <p style="font-size:0.8rem;color:var(--muted);line-height:1.6">SAP-managed, multi-tenant. Best practice configurations. Fastest time-to-value. Ideal for GROW with SAP.</p>
+        </div></div>
+        <div class="col-md-4"><div style="background:rgba(155,28,28,0.06);border:1px solid rgba(155,28,28,0.2);border-radius:12px;padding:1.4rem">
+          <div style="font-family:'Sora',sans-serif;font-weight:700;color:#fff;margin-bottom:0.5rem;font-size:0.92rem"><i class="bi bi-server me-2" style="color:#9b1c1c"></i>Private Cloud</div>
+          <p style="font-size:0.8rem;color:var(--muted);line-height:1.6">SAP-managed, single-tenant on hyperscalers (AWS, Azure, GCP). More flexibility with enterprise support. Ideal for RISE with SAP.</p>
+        </div></div>
+        <div class="col-md-4"><div style="background:rgba(0,212,170,0.06);border:1px solid rgba(0,212,170,0.2);border-radius:12px;padding:1.4rem">
+          <div style="font-family:'Sora',sans-serif;font-weight:700;color:#fff;margin-bottom:0.5rem;font-size:0.92rem"><i class="bi bi-building-fill me-2" style="color:#00d4aa"></i>On-Premise</div>
+          <p style="font-size:0.8rem;color:var(--muted);line-height:1.6">Customer-managed in own data centres. Maximum control, highest customisation. Suits regulated industries with strict data sovereignty requirements.</p>
+        </div></div>
+      </div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">Our S/4HANA Delivery Approach</div>
+      <div class="feature-checklist">
+        <li><i class="bi bi-check-circle-fill"></i>SAP-certified S/4HANA consultants across all modules</li>
+        <li><i class="bi bi-check-circle-fill"></i>KTern.AI-powered migration assessment and test automation</li>
+        <li><i class="bi bi-check-circle-fill"></i>Agile delivery with 2-week sprints and continuous business sign-off</li>
+        <li><i class="bi bi-check-circle-fill"></i>Fit-to-Standard workshops to minimise custom code</li>
+        <li><i class="bi bi-check-circle-fill"></i>Hypercare support for 90 days post go-live</li>
+        <li><i class="bi bi-check-circle-fill"></i>Change management and end-user training embedded in every project</li>
+        <li><i class="bi bi-check-circle-fill"></i>500+ successful S/4HANA go-lives across 40+ countries</li>
+        <li><i class="bi bi-check-circle-fill"></i>Average project duration 6–18 months depending on scope</li>
+      </div>
+    </div>`},
+
+  'rise-sap':{tag:'Enterprise Application',parent:'Services',title:'RISE with SAP',desc:'Your complete intelligent enterprise as a service — everything you need to transform and run your SAP ERP in the cloud.',body:`
+    <div class="detail-section">
+      <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=1200&q=80" alt="RISE with SAP" style="width:100%;height:300px;object-fit:cover;border-radius:14px;margin-bottom:2rem"/>
+      <div class="stats-row"><div class="stat-box"><h3>1</h3><p>Contract for everything</p></div><div class="stat-box"><h3>86%</h3><p>Customers see ROI in Y1</p></div><div class="stat-box"><h3>50%</h3><p>Lower TCO vs on-premise</p></div><div class="stat-box"><h3>8 wks</h3><p>Fastest go-live possible</p></div></div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">What's Included in RISE with SAP?</div>
+      <div class="detail-grid">
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-cloud-check-fill"></i></div><h5>SAP S/4HANA Cloud Private Edition</h5><p>The full power of SAP S/4HANA in a SAP-managed private cloud environment on your preferred hyperscaler — AWS, Azure, or GCP.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-cpu-fill"></i></div><h5>SAP Business Technology Platform</h5><p>Integration Suite, Extension Suite, Analytics Cloud, and AI/ML services all included — extend and connect your intelligent enterprise.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-diagram-3-fill"></i></div><h5>SAP Signavio Process Intelligence</h5><p>Continuous process mining to identify bottlenecks, benchmark against SAP best practices, and prioritise improvement opportunities.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-tools"></i></div><h5>SAP LeanIX & Cloud ALM</h5><p>Enterprise architecture management and cloud-based application lifecycle management tools included out of the box.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-headset"></i></div><h5>SAP Enterprise Support</h5><p>24/7 access to SAP premium support, proactive monitoring, mission-critical support, and learning hub access for all users.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-arrow-up-circle-fill"></i></div><h5>Continuous Innovation</h5><p>Quarterly cloud releases delivering new features, AI capabilities, and regulatory updates automatically — stay perpetually current.</p></div>
+      </div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">Why Choose RISE with SAP?</div>
+      <p style="color:var(--muted);font-size:0.9rem;line-height:1.75;max-width:820px">RISE with SAP removes the complexity of managing multiple vendors, contracts, and SLAs. With a single subscription, SAP takes responsibility for the infrastructure, the platform, and the application — while our team handles the implementation, change management, and ongoing optimisation. You focus on running your business; we ensure the technology never holds you back.</p>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">Our RISE Delivery Methodology</div>
+      <div class="feature-checklist">
+        <li><i class="bi bi-check-circle-fill"></i>RISE Business Case Workshop — quantify your cloud ROI in 2 weeks</li>
+        <li><i class="bi bi-check-circle-fill"></i>SAP Readiness Check to assess custom code and data migration complexity</li>
+        <li><i class="bi bi-check-circle-fill"></i>SAP Activate methodology for structured, low-risk cloud migration</li>
+        <li><i class="bi bi-check-circle-fill"></i>KTern.AI automated testing covering 10,000+ test cases</li>
+        <li><i class="bi bi-check-circle-fill"></i>Cutover planning with zero data loss guarantee</li>
+        <li><i class="bi bi-check-circle-fill"></i>Post go-live optimisation sprints every quarter</li>
+      </div>
+    </div>`},
+
+  'grow-sap':{tag:'Enterprise Application',parent:'Services',title:'GROW with SAP',desc:'Fast, affordable SAP S/4HANA Cloud Public Edition for growing mid-market companies — go live in weeks, not years.',body:`
+    <div class="detail-section">
+      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80" alt="GROW with SAP" style="width:100%;height:300px;object-fit:cover;border-radius:14px;margin-bottom:2rem"/>
+      <div class="stats-row"><div class="stat-box"><h3>8 wks</h3><p>Fastest go-live</p></div><div class="stat-box"><h3>0</h3><p>Custom code required</p></div><div class="stat-box"><h3>100%</h3><p>Cloud managed by SAP</p></div><div class="stat-box"><h3>40%</h3><p>Lower cost vs custom ERP</p></div></div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">Built for Mid-Market Speed</div>
+      <p style="color:var(--muted);font-size:0.9rem;line-height:1.75;max-width:820px">GROW with SAP delivers the full power of SAP S/4HANA Cloud Public Edition with pre-configured best practice content for your industry — so you can start running your business on world-class ERP in weeks, not years. Our certified implementation partners guide you through the SAP Activate methodology, fitting your processes to SAP's proven standards rather than building custom solutions that slow you down and cost more to maintain.</p>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">What You Get</div>
+      <div class="detail-grid">
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-speedometer2"></i></div><h5>Pre-Configured Best Practices</h5><p>Hundreds of pre-built business processes covering finance, procurement, manufacturing, sales, and HR — ready to activate on day one.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-currency-dollar"></i></div><h5>Predictable Subscription Pricing</h5><p>Simple per-user monthly pricing with no hardware, no infrastructure costs, no surprise upgrade fees. Grow your licence as your company grows.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-cloud-check-fill"></i></div><h5>Always Current Cloud</h5><p>Quarterly updates delivered automatically by SAP — you always run the latest S/4HANA features and compliance updates without any IT effort.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-robot"></i></div><h5>AI from Day One</h5><p>SAP Joule AI assistant and 100+ AI-powered business processes included — intelligent automation without any AI project investment.</p></div>
+      </div>
+    </div>`},
+
+  'eos':{tag:'Enterprise Application',parent:'Services',title:'EOS Transformation',desc:'End-to-end Enterprise Operations Suite transformation — modernising your SAP ECC legacy landscape to S/4HANA.',body:`
+    <div class="detail-section">
+      <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80" alt="EOS Transformation" style="width:100%;height:300px;object-fit:cover;border-radius:14px;margin-bottom:2rem"/>
+      <div class="stats-row"><div class="stat-box"><h3>2027</h3><p>SAP ECC End of Support</p></div><div class="stat-box"><h3>70%</h3><p>Enterprises still on ECC</p></div><div class="stat-box"><h3>18 mo</h3><p>Avg migration duration</p></div><div class="stat-box"><h3>95%</h3><p>Our on-time delivery rate</p></div></div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">Why Migrate Now?</div>
+      <p style="color:var(--muted);font-size:0.9rem;line-height:1.75;max-width:820px">SAP's mainstream maintenance for ECC ends in 2027. After that date, running SAP ECC means operating without security patches, regulatory updates, or new feature development — exposing your business to significant risk. Our EOS Transformation practice has migrated over 200 SAP ECC landscapes to S/4HANA, developing repeatable tools, accelerators, and delivery patterns that de-risk your migration and minimise business disruption.</p>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">Our 5-Phase EOS Methodology</div>
+      <div class="detail-grid">
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-search"></i></div><h5>Phase 1 — Assess</h5><p>KTern.AI-powered discovery of your SAP landscape: custom objects, interfaces, data volumes, and technical debt. Full migration complexity scorecard in 2 weeks.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-map-fill"></i></div><h5>Phase 2 — Roadmap</h5><p>Business case, TCO analysis, deployment model selection (public/private cloud or on-premise), and phased migration roadmap with clear milestones.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-code-slash"></i></div><h5>Phase 3 — Prepare</h5><p>Custom code remediation, data cleansing, test script generation (10,000+ automated test cases via KTern.AI), and sandbox system build.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-rocket-fill"></i></div><h5>Phase 4 — Migrate</h5><p>System conversion or new implementation using SAP Activate methodology with agile sprints, continuous testing, and weekly stakeholder demos.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-graph-up-arrow"></i></div><h5>Phase 5 — Optimise</h5><p>Post go-live hypercare, value realisation tracking against business case, and quarterly innovation sprints adopting new S/4HANA capabilities.</p></div>
+      </div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">Migration Tools & Accelerators</div>
+      <div class="feature-checklist">
+        <li><i class="bi bi-check-circle-fill"></i>KTern.AI — AI-native SAP transformation platform reducing project effort by 40%</li>
+        <li><i class="bi bi-check-circle-fill"></i>Pre-built test scripts for 200+ standard SAP business scenarios</li>
+        <li><i class="bi bi-check-circle-fill"></i>Custom code impact analyser identifying and classifying all ABAP objects automatically</li>
+        <li><i class="bi bi-check-circle-fill"></i>SAP Readiness Check integration for automated system validation</li>
+        <li><i class="bi bi-check-circle-fill"></i>Data migration templates for all standard SAP objects</li>
+        <li><i class="bi bi-check-circle-fill"></i>Cut-over runbook with zero data loss validation framework</li>
+      </div>
+    </div>`},
+
+  'ams':{tag:'Enterprise Application',parent:'Services',title:'Application Management Services',desc:'Keep your SAP landscape running at peak performance with 24/7 managed application support, proactive monitoring, and continuous enhancement.',body:`
+    <div class="detail-section">
+      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1200&q=80" alt="Application Management Services" style="width:100%;height:300px;object-fit:cover;border-radius:14px;margin-bottom:2rem"/>
+      <div class="stats-row"><div class="stat-box"><h3>24/7</h3><p>Global Support Coverage</p></div><div class="stat-box"><h3>99.9%</h3><p>System Uptime SLA</p></div><div class="stat-box"><h3>&lt;4 hr</h3><p>P1 Incident Response</p></div><div class="stat-box"><h3>95%</h3><p>First-Call Resolution</p></div></div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">Our AMS Service Tiers</div>
+      <div class="detail-grid">
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-headset"></i></div><h5>L1 — Service Desk</h5><p>Single point of contact for all SAP incidents and service requests. Triage, initial diagnosis, password resets, and user provisioning — resolved in minutes, not hours.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-wrench-adjustable-fill"></i></div><h5>L2 — Application Support</h5><p>Deep functional and technical expertise across all SAP modules. Configuration changes, minor enhancements, transport management, and root cause analysis.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-code-slash"></i></div><h5>L3 — Development & Architecture</h5><p>Senior SAP architects and ABAP developers handling complex custom development, performance optimisation, integration issues, and system architecture decisions.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-graph-up-arrow"></i></div><h5>Proactive Monitoring & AIOps</h5><p>AI-powered system monitoring identifying performance degradation, batch job failures, and security anomalies before they impact business operations.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-arrow-up-circle-fill"></i></div><h5>Continuous Improvement</h5><p>Monthly optimisation sprints delivering small enhancements, security patches, legal updates, and quarterly business reviews tracking value delivered.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-globe2"></i></div><h5>Follow-the-Sun Model</h5><p>Delivery centres in India, Europe, and North America ensure true 24/7 coverage with native-language support in 12+ languages.</p></div>
+      </div>
+    </div>`},
+
+  'supply-chain':{tag:'Operations Services',parent:'Services',title:'Supply Chain Transformation',desc:'Build a resilient, AI-driven supply chain that adapts to disruption and delivers competitive advantage at every link.',body:`
+    <div class="detail-section">
+      <img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=1200&q=80" alt="Supply Chain" style="width:100%;height:300px;object-fit:cover;border-radius:14px;margin-bottom:2rem"/>
+      <div class="stats-row"><div class="stat-box"><h3>35%</h3><p>Inventory Cost Reduction</p></div><div class="stat-box"><h3>28%</h3><p>Forecast Accuracy Gain</p></div><div class="stat-box"><h3>20%</h3><p>Transport Cost Savings</p></div><div class="stat-box"><h3>99%</h3><p>On-Time Delivery Rate</p></div></div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">End-to-End Supply Chain Capabilities</div>
+      <div class="detail-grid">
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-graph-up"></i></div><h5>Demand Planning & Sensing</h5><p>SAP IBP-powered AI demand forecasting that senses real-time signals from POS data, weather, social trends, and economic indicators to improve accuracy by 28%+.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-box-fill"></i></div><h5>Multi-Echelon Inventory</h5><p>Optimise stock across warehouses, distribution centres, and retail locations simultaneously — reducing carrying costs while maintaining 99%+ service levels.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-truck-front-fill"></i></div><h5>Transportation Management</h5><p>SAP TM with carrier management, freight tendering, route optimisation, and real-time shipment tracking across all modes — air, ocean, rail, and road.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-building-fill"></i></div><h5>Warehouse Management</h5><p>SAP EWM with slotting optimisation, labour management, yard management, and robotics integration for fully automated warehouse operations.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-people-fill"></i></div><h5>Supplier Collaboration</h5><p>Real-time supplier portal for order management, forecast sharing, performance tracking, and risk assessment across your entire supply base.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-exclamation-triangle-fill"></i></div><h5>Supply Chain Resilience</h5><p>AI-driven disruption detection, alternative sourcing recommendations, and what-if scenario modelling to keep your supply chain running through any disruption.</p></div>
+      </div>
+    </div>`},
+
+  'procurement':{tag:'Operations Services',parent:'Services',title:'Procurement Transformation',desc:'Digitise your entire source-to-pay process with SAP Ariba — reducing costs, managing risk, and unlocking supplier innovation.',body:`
+    <div class="detail-section">
+      <img src="https://images.unsplash.com/photo-1444653614773-995cb1ef9efa?w=1200&q=80" alt="Procurement" style="width:100%;height:300px;object-fit:cover;border-radius:14px;margin-bottom:2rem"/>
+      <div class="stats-row"><div class="stat-box"><h3>12%</h3><p>Average Spend Savings</p></div><div class="stat-box"><h3>90%</h3><p>Invoice Automation Rate</p></div><div class="stat-box"><h3>6M+</h3><p>Ariba Network Suppliers</p></div><div class="stat-box"><h3>3×</h3><p>Faster PO Processing</p></div></div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">Source-to-Pay Capabilities</div>
+      <div class="detail-grid">
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-search"></i></div><h5>Strategic Sourcing</h5><p>AI-driven spend analysis, supplier discovery across the Ariba Network, competitive e-auctions, and RFx management — finding the best suppliers at the best prices.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-file-text-fill"></i></div><h5>Contract Management</h5><p>Centralised contract repository with AI-powered clause analysis, automated compliance alerts, renewal management, and obligation tracking.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-cart-fill"></i></div><h5>Guided Buying</h5><p>Intuitive consumer-style shopping experience for employees — guided to preferred suppliers, catalogues, and compliant purchasing channels automatically.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-receipt-cutoff"></i></div><h5>Accounts Payable Automation</h5><p>AI-powered invoice processing with 90%+ straight-through processing rates, 3-way matching, and early payment discount capture through dynamic discounting.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-shield-check-fill"></i></div><h5>Supplier Risk Management</h5><p>Real-time ESG scoring, financial risk monitoring, geopolitical risk alerts, and automated supplier qualification workflows across your entire supply base.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-pie-chart-fill"></i></div><h5>Spend Analytics</h5><p>360° spend visibility across all categories, business units, and geographies — identifying savings opportunities, policy violations, and maverick spend instantly.</p></div>
+      </div>
+    </div>`},
+
+  'finance-trans':{tag:'Operations Services',parent:'Services',title:'Finance Transformation',desc:'Modernise your finance function with automated processes, real-time insights, and AI-powered decision support.',body:`
+    <div class="detail-section">
+      <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1200&q=80" alt="Finance Transformation" style="width:100%;height:300px;object-fit:cover;border-radius:14px;margin-bottom:2rem"/>
+      <div class="stats-row"><div class="stat-box"><h3>70%</h3><p>Faster Month-End Close</p></div><div class="stat-box"><h3>80%</h3><p>Manual Task Reduction</p></div><div class="stat-box"><h3>99%</h3><p>Forecast Accuracy</p></div><div class="stat-box"><h3>30%</h3><p>Compliance Cost Savings</p></div></div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">Finance Process Transformation Areas</div>
+      <div class="detail-grid">
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-calculator-fill"></i></div><h5>Record-to-Report (R2R)</h5><p>SAP S/4HANA Finance universal journal eliminates redundant data entry. Automated journal entries, intercompany reconciliation, and a financial close that runs in days not weeks.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-receipt-cutoff"></i></div><h5>Order-to-Cash (O2C)</h5><p>Intelligent billing engine, AI-powered credit management, automated collections with predictive payment scoring, and real-time cash application reducing DSO by 25%+.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-cart-fill"></i></div><h5>Procure-to-Pay (P2P)</h5><p>Automated three-way matching, AI invoice extraction, supplier payment optimisation, and dynamic discounting to capture early payment discounts systematically.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-bar-chart-fill"></i></div><h5>FP&A Modernisation</h5><p>Driver-based financial planning in SAP Analytics Cloud — rolling forecasts updated automatically from actuals, scenario modelling, and integrated business planning across P&L, balance sheet, and cash flow.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-globe2"></i></div><h5>Treasury & Cash Management</h5><p>Centralised treasury operations, cash pooling, FX risk management, bank connectivity, and liquidity forecasting — all in real time with full audit trails.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-shield-check-fill"></i></div><h5>Compliance & Controls</h5><p>Automated SOX controls testing, SAP GRC integration, IFRS/GAAP compliance workflows, and real-time regulatory reporting across 50+ country legal requirements.</p></div>
+      </div>
+    </div>`},
+
+  'cloud-trans':{tag:'Digital Services',parent:'Services',title:'Cloud Transformation',desc:'Accelerate your journey to the cloud with a structured, risk-managed migration strategy delivering measurable business outcomes.',body:`
+    <div class="detail-section">
+      <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=80" alt="Cloud Transformation" style="width:100%;height:300px;object-fit:cover;border-radius:14px;margin-bottom:2rem"/>
+      <div class="stats-row"><div class="stat-box"><h3>40%</h3><p>Infrastructure Cost Reduction</p></div><div class="stat-box"><h3>3×</h3><p>Deployment Speed Increase</p></div><div class="stat-box"><h3>99.99%</h3><p>Cloud Availability SLA</p></div><div class="stat-box"><h3>65%</h3><p>Faster Disaster Recovery</p></div></div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">Cloud Migration Strategies (The 6 Rs)</div>
+      <div class="detail-grid">
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-arrow-right-circle-fill"></i></div><h5>Rehost (Lift & Shift)</h5><p>Move existing workloads to cloud with minimal changes. Fastest time-to-cloud, immediate cost savings, with optimisation opportunities unlocked post-migration.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-wrench-adjustable-fill"></i></div><h5>Replatform</h5><p>Make targeted cloud optimisations without changing core architecture. Migrate databases to managed services, adopt container orchestration, unlock auto-scaling.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-building-fill"></i></div><h5>Refactor / Re-architect</h5><p>Redesign applications as cloud-native microservices to maximise agility, scalability, and resilience. Highest effort, highest long-term value.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-box-fill"></i></div><h5>Repurchase (SaaS)</h5><p>Replace legacy on-premise applications with cloud-native SaaS alternatives — SAP S/4HANA Cloud, SuccessFactors, Ariba, and BTP replacing custom-built systems.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-archive-fill"></i></div><h5>Retire & Retain</h5><p>Identify applications that can be decommissioned, saving maintenance costs, and those that must remain on-premise for compliance or technical reasons.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-shield-check-fill"></i></div><h5>Cloud Security by Design</h5><p>Zero-trust architecture, identity-first security, data encryption, and continuous compliance monitoring embedded throughout the migration — not bolted on after.</p></div>
+      </div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">Supported Cloud Platforms</div>
+      <div class="row g-3">
+        <div class="col-md-4"><div style="background:rgba(0,112,243,0.06);border:1px solid rgba(0,112,243,0.2);border-radius:12px;padding:1.2rem;text-align:center">
+          <i class="bi bi-cloud-fill" style="font-size:2rem;color:#0070f3;display:block;margin-bottom:0.5rem"></i>
+          <div style="font-family:'Sora',sans-serif;font-weight:700;color:#fff;font-size:0.9rem">Microsoft Azure</div>
+          <p style="font-size:0.75rem;color:var(--muted);margin-top:0.3rem">Azure certified. SAP on Azure expertise across 50+ projects.</p>
+        </div></div>
+        <div class="col-md-4"><div style="background:rgba(0,212,170,0.06);border:1px solid rgba(0,212,170,0.2);border-radius:12px;padding:1.2rem;text-align:center">
+          <i class="bi bi-cloud-check-fill" style="font-size:2rem;color:#00d4aa;display:block;margin-bottom:0.5rem"></i>
+          <div style="font-family:'Sora',sans-serif;font-weight:700;color:#fff;font-size:0.9rem">Amazon Web Services</div>
+          <p style="font-size:0.75rem;color:var(--muted);margin-top:0.3rem">AWS Advanced Partner. SAP on AWS migrations and managed services.</p>
+        </div></div>
+        <div class="col-md-4"><div style="background:rgba(155,28,28,0.06);border:1px solid rgba(155,28,28,0.2);border-radius:12px;padding:1.2rem;text-align:center">
+          <i class="bi bi-google" style="font-size:2rem;color:#9b1c1c;display:block;margin-bottom:0.5rem"></i>
+          <div style="font-family:'Sora',sans-serif;font-weight:700;color:#fff;font-size:0.9rem">Google Cloud Platform</div>
+          <p style="font-size:0.75rem;color:var(--muted);margin-top:0.3rem">GCP certified. SAP HANA on GCP optimised for BigQuery integration.</p>
+        </div></div>
+      </div>
+    </div>`},
+
+  'btp':{tag:'Digital Services',parent:'Services',title:'Business Technology Platform',desc:'SAP BTP is your unified platform for integration, data management, analytics, AI, and cloud-native application development.',body:`
+    <div class="detail-section">
+      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80" alt="SAP BTP" style="width:100%;height:300px;object-fit:cover;border-radius:14px;margin-bottom:2rem"/>
+      <div class="stats-row"><div class="stat-box"><h3>1500+</h3><p>Pre-built Integrations</p></div><div class="stat-box"><h3>100+</h3><p>AI Business Services</p></div><div class="stat-box"><h3>4×</h3><p>Faster App Development</p></div><div class="stat-box"><h3>99.9%</h3><p>Platform Uptime</p></div></div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">BTP Capability Pillars</div>
+      <div class="detail-grid">
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-plug-fill"></i></div><h5>Integration Suite</h5><p>1500+ pre-built connectors, API management, event-driven architecture, and B2B/EDI messaging. Connect SAP and non-SAP systems in days with no-code integration flows.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-database-fill"></i></div><h5>Data & Analytics (Datasphere)</h5><p>SAP Datasphere as the semantic data layer connecting all your enterprise data — SAP and non-SAP — with SAP Analytics Cloud delivering BI, planning, and predictive analytics on top.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-robot"></i></div><h5>AI & Automation</h5><p>100+ AI business services including document information extraction, intelligent situation automation, machine translation, and custom ML model training — all enterprise-ready.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-code-slash"></i></div><h5>Application Development</h5><p>SAP Build (low-code/no-code) for citizen developers, SAP Build Code for professional developers on Cloud Foundry and Kyma runtime — deploy full-stack enterprise apps in days.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-shield-check-fill"></i></div><h5>Security & Identity</h5><p>SAP Identity Authentication, authorisation management, audit logging, and data privacy controls embedded across all BTP services — enterprise-grade security by default.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-arrow-up-circle-fill"></i></div><h5>Side-by-Side Extensions</h5><p>Extend SAP S/4HANA, SuccessFactors, and Ariba without touching the core — build custom workflows, UIs, and processes on BTP that upgrade cleanly with every SAP release.</p></div>
+      </div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">Common BTP Use Cases We Deliver</div>
+      <div class="feature-checklist">
+        <li><i class="bi bi-check-circle-fill"></i>Real-time S/4HANA to Salesforce integration with bi-directional sync</li>
+        <li><i class="bi bi-check-circle-fill"></i>AI-powered document processing — invoices, purchase orders, contracts</li>
+        <li><i class="bi bi-check-circle-fill"></i>Custom SAP Fiori apps extending S/4HANA standard functionality</li>
+        <li><i class="bi bi-check-circle-fill"></i>Unified data lake on BTP connecting SAP and non-SAP data sources</li>
+        <li><i class="bi bi-check-circle-fill"></i>SAP Build Process Automation for approval workflows and RPA</li>
+        <li><i class="bi bi-check-circle-fill"></i>Customer 360 data platform integrating CRM, ERP, and marketing data</li>
+        <li><i class="bi bi-check-circle-fill"></i>Real-time analytics dashboards replacing manual Excel reporting</li>
+        <li><i class="bi bi-check-circle-fill"></i>IoT data ingestion from shop floor into S/4HANA for predictive maintenance</li>
+      </div>
+    </div>`},
+
+  'hr-trans':{tag:'Performance Services',parent:'Services',title:'HR Transformation',desc:'Build a future-ready workforce with SAP SuccessFactors — transforming every stage of the employee lifecycle from hire to retire.',body:`
+    <div class="detail-section">
+      <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1200&q=80" alt="HR Transformation" style="width:100%;height:300px;object-fit:cover;border-radius:14px;margin-bottom:2rem"/>
+      <div class="stats-row"><div class="stat-box"><h3>30%</h3><p>Reduction in Time-to-Hire</p></div><div class="stat-box"><h3>25%</h3><p>HR Admin Cost Savings</p></div><div class="stat-box"><h3>40%</h3><p>Employee Engagement Boost</p></div><div class="stat-box"><h3>99%</h3><p>Payroll Accuracy</p></div></div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">SuccessFactors Modules We Implement</div>
+      <div class="detail-grid">
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-person-check-fill"></i></div><h5>Employee Central</h5><p>The core HR system of record — global employee data management, organisational structure, position management, and compliance for 50+ countries in one platform.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-search"></i></div><h5>Recruiting & Onboarding</h5><p>AI-powered job recommendations, intelligent candidate screening, video interviewing integration, and structured onboarding programmes that reduce new-hire time-to-productivity by 40%.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-star-fill"></i></div><h5>Performance & Goals</h5><p>Continuous feedback, OKR-style goal alignment, calibration sessions, and compensation recommendations driven by AI — creating a high-performance culture at scale.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-mortarboard-fill"></i></div><h5>Learning Management</h5><p>SAP SuccessFactors Learning with AI-personalised learning paths, compliance training management, external content library integration, and skills gap analysis.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-currency-dollar"></i></div><h5>Payroll & Benefits</h5><p>SAP global payroll covering 40+ countries with built-in compliance, benefits enrolment, time and attendance, and real-time payroll simulations — zero errors, on time, every time.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-graph-up-arrow"></i></div><h5>Workforce Analytics</h5><p>People analytics with 2000+ pre-built HR metrics, predictive attrition modelling, DEI dashboards, and workforce planning scenarios integrating HR data with financial plans.</p></div>
+      </div>
+    </div>`},
+
+  'cx-trans':{tag:'Performance Services',parent:'Services',title:'CX Transformation',desc:'Reimagine every customer touchpoint with SAP\'s integrated customer experience suite — marketing, sales, service, and commerce unified.',body:`
+    <div class="detail-section">
+      <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&q=80" alt="CX Transformation" style="width:100%;height:300px;object-fit:cover;border-radius:14px;margin-bottom:2rem"/>
+      <div class="stats-row"><div class="stat-box"><h3>35%</h3><p>Sales Conversion Increase</p></div><div class="stat-box"><h3>28%</h3><p>Customer Retention Gain</p></div><div class="stat-box"><h3>40%</h3><p>Service Cost Reduction</p></div><div class="stat-box"><h3>+25</h3><p>NPS Score Improvement</p></div></div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">CX Suite Capabilities</div>
+      <div class="detail-grid">
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-megaphone-fill"></i></div><h5>Marketing Cloud</h5><p>AI-powered audience segmentation, omnichannel campaign orchestration across email, SMS, social, and web — with real-time personalisation and journey analytics.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-graph-up-arrow"></i></div><h5>Sales Cloud & CPQ</h5><p>Intelligent opportunity management, AI-driven forecast accuracy, configure-price-quote automation eliminating quoting errors, and guided selling for complex B2B scenarios.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-chat-dots-fill"></i></div><h5>Service Cloud</h5><p>Omnichannel customer service desk, AI-powered case routing, knowledge management, field service scheduling, and customer self-service portals reducing inbound contact by 40%.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-cart-fill"></i></div><h5>Commerce Cloud</h5><p>SAP Commerce Cloud for B2B and B2C — headless commerce architecture, product catalogue management, personalised storefronts, and seamless SAP ERP integration.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-person-heart"></i></div><h5>Customer Data Platform</h5><p>Unified customer profiles aggregating data from every touchpoint — enabling real-time personalisation, next-best-action recommendations, and privacy-compliant data management.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-bar-chart-fill"></i></div><h5>CX Analytics & Insights</h5><p>End-to-end CX measurement — customer lifetime value, attribution modelling, churn prediction, and operational KPIs all in a unified SAP Analytics Cloud dashboard.</p></div>
+      </div>
+    </div>`},
+
+  'data-eng':{tag:'Digiverz',parent:'Services',title:'Data Engineering & Science',desc:'Transform raw data into competitive intelligence with end-to-end data engineering, machine learning, and advanced analytics.',body:`
+    <div class="detail-section">
+      <img src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=1200&q=80" alt="Data Engineering" style="width:100%;height:300px;object-fit:cover;border-radius:14px;margin-bottom:2rem"/>
+      <div class="stats-row"><div class="stat-box"><h3>10×</h3><p>Faster Insights Delivery</p></div><div class="stat-box"><h3>60%</h3><p>Data Engineering Cost Saving</p></div><div class="stat-box"><h3>95%</h3><p>ML Model Accuracy</p></div><div class="stat-box"><h3>100%</h3><p>Real-time Data Pipelines</p></div></div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">Our Data Engineering Capabilities</div>
+      <div class="detail-grid">
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-database-fill"></i></div><h5>Modern Data Architecture</h5><p>Design and build scalable data lakes, lakehouses, and real-time streaming architectures on Azure, AWS, or GCP — using Databricks, Snowflake, BigQuery, or SAP Datasphere.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-arrow-repeat"></i></div><h5>Data Pipeline Engineering</h5><p>High-throughput ELT/ETL pipelines using Apache Spark, dbt, Airbyte, and Apache Kafka — ingesting data from SAP, SaaS apps, IoT devices, and legacy systems reliably at scale.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-robot"></i></div><h5>Machine Learning & AI</h5><p>End-to-end ML: feature engineering, model development in Python/R, MLflow experiment tracking, and production deployment with automated retraining pipelines via MLOps.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-bar-chart-fill"></i></div><h5>Advanced Analytics</h5><p>Predictive modelling, NLP, computer vision, recommendation engines, and forecasting models — deployed as APIs that feed directly into SAP S/4HANA and BTP workflows.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-diagram-3-fill"></i></div><h5>Data Governance & Quality</h5><p>Master data management, data cataloguing with Collibra or Alation, lineage tracking, quality scoring, and GDPR/CCPA privacy compliance frameworks built into every pipeline.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-cpu-fill"></i></div><h5>Generative AI Solutions</h5><p>RAG-based enterprise search, LLM-powered document processing, AI chatbots integrated with SAP data, and custom GPT solutions built on Azure OpenAI or AWS Bedrock.</p></div>
+      </div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">Technology Stack We Work With</div>
+      <div class="feature-checklist">
+        <li><i class="bi bi-check-circle-fill"></i>Cloud: Azure Synapse, AWS Glue, Google BigQuery, Databricks, Snowflake</li>
+        <li><i class="bi bi-check-circle-fill"></i>Streaming: Apache Kafka, Azure Event Hubs, AWS Kinesis, Apache Flink</li>
+        <li><i class="bi bi-check-circle-fill"></i>Transformation: dbt, Apache Spark, Apache Airflow, Prefect</li>
+        <li><i class="bi bi-check-circle-fill"></i>ML Platforms: MLflow, Kubeflow, Azure ML, SageMaker, Vertex AI</li>
+        <li><i class="bi bi-check-circle-fill"></i>Gen AI: Azure OpenAI, AWS Bedrock, Google Gemini, LangChain, LlamaIndex</li>
+        <li><i class="bi bi-check-circle-fill"></i>Governance: Collibra, Alation, Apache Atlas, Microsoft Purview</li>
+      </div>
+    </div>`},
+
+  'biz-analytics':{tag:'Business Platforms',parent:'Services',title:'Business Analytics',desc:'Turn your enterprise data into decisions with SAP Analytics Cloud — self-service BI, integrated planning, and predictive analytics in one platform.',body:`
+    <div class="detail-section">
+      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80" alt="Business Analytics" style="width:100%;height:300px;object-fit:cover;border-radius:14px;margin-bottom:2rem"/>
+      <div class="stats-row"><div class="stat-box"><h3>80%</h3><p>Faster Report Creation</p></div><div class="stat-box"><h3>50%</h3><p>Planning Cycle Reduction</p></div><div class="stat-box"><h3>3×</h3><p>Forecast Accuracy</p></div><div class="stat-box"><h3>1000s</h3><p>Pre-built SAP Content Packages</p></div></div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">SAP Analytics Cloud Capabilities</div>
+      <div class="detail-grid">
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-bar-chart-fill"></i></div><h5>Business Intelligence</h5><p>Drag-and-drop self-service analytics with 100+ chart types, pixel-perfect boardroom reports, and real-time connections to SAP S/4HANA, BW/4HANA, and 200+ non-SAP data sources.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-calendar-check-fill"></i></div><h5>Integrated Business Planning</h5><p>Driver-based financial planning, workforce planning, and sales & operations planning — all collaboratively in SAC, with live write-back to S/4HANA actuals.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-graph-up-arrow"></i></div><h5>Predictive Analytics</h5><p>No-code predictive scenarios — smart predict for forecasting, classification, and regression. Business users build and run ML models without data science expertise.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-robot"></i></div><h5>AI-Assisted Insights</h5><p>Natural language queries ("What drove Q3 revenue variance?"), automated insight generation, and anomaly detection that proactively alerts finance teams to issues.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-phone-fill"></i></div><h5>Mobile Analytics</h5><p>Native iOS and Android apps with offline capability — executive dashboards, KPI alerts, and collaborative annotations available anywhere, on any device.</p></div>
+        <div class="detail-card"><div class="detail-card-icon"><i class="bi bi-puzzle-fill"></i></div><h5>Pre-built Content</h5><p>1000+ SAP-provided content packages for S/4HANA, SuccessFactors, Ariba, and industry solutions — go live with best-practice dashboards in days, not months.</p></div>
+      </div>
+    </div>`},
   'dcp':{tag:'Business Platforms',parent:'Services',title:'Digital Customer Platforms',desc:'Build exceptional digital commerce and customer engagement on scalable modern platforms.',body:`<div class="detail-section"><div class="detail-grid"><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-cart-fill"></i></div><h5>B2B Commerce</h5><p>SAP Commerce Cloud for complex B2B scenarios — catalog management, pricing, and self-service.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-shop-window"></i></div><h5>B2C Commerce</h5><p>High-performance storefronts with AI-driven personalization and seamless checkout optimization.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-person-heart"></i></div><h5>Customer Data Platform</h5><p>Unified customer profiles, real-time segmentation, and AI-powered next-best-action recommendations.</p></div></div></div>`},
   'liferay':{tag:'Business Platforms',parent:'Services',title:'Liferay',desc:'Build powerful enterprise portals and digital experience platforms with SAP-integrated Liferay.',body:`<div class="detail-section"><div class="detail-grid"><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-window-fill"></i></div><h5>Enterprise Portals</h5><p>Employee, supplier, and customer portals built on Liferay DXP with deep SAP integration.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-phone-fill"></i></div><h5>Mobile-First Design</h5><p>Responsive progressive web apps delivering seamless experiences across all devices.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-plug-fill"></i></div><h5>SAP Integration</h5><p>Pre-built connectors for SAP S/4HANA, SuccessFactors, and BTP enabling real-time data surfacing.</p></div></div></div>`},
   'high-tech':{tag:'Discrete',parent:'Industries',title:'High Tech',desc:'Power your high-tech business with SAP for rapid innovation and complex supply chains.',body:`<div class="detail-section"><div class="detail-grid"><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-cpu-fill"></i></div><h5>Product Lifecycle</h5><p>End-to-end PLM integration connecting engineering, manufacturing, and after-sales service.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-diagram-3-fill"></i></div><h5>Supply Chain Agility</h5><p>Multi-tier visibility for semiconductor, electronics, and software product companies.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-globe2"></i></div><h5>Global Trade</h5><p>Trade compliance, customs management, and global trade automation for complex operations.</p></div><div class="detail-card"><div class="detail-card-icon"><i class="bi bi-robot"></i></div><h5>R&D Innovation</h5><p>SAP PLM and innovation management tools accelerating new product development time-to-market.</p></div></div></div>`},

@@ -47,46 +47,64 @@
       <li class="nav-item">
         <button class="nav-link-btn">Services <i class="bi bi-chevron-down chevron"></i></button>
         <div class="mega-drop">
-          <div class="mega-wrap">
+          <div class="mega-wrap" style="gap:2rem">
             <div class="mega-label-col"><div class="mega-label">Our Services</div></div>
             <div class="mega-content">
               <div class="mega-cols cols-3">
                 <div>
                   <div class="mega-col-title">Enterprise Application</div>
-                  <button class="mega-link" onclick="showDetail('eos')">EOS Transformation</button>
-                  <button class="mega-link" onclick="showDetail('s4hana')">SAP S/4HANA</button>
-                  <button class="mega-link" onclick="showDetail('rise-sap')">RISE with SAP</button>
-                  <button class="mega-link" onclick="showDetail('grow-sap')">GROW with SAP</button>
-                  <button class="mega-link" onclick="showDetail('ams')">Application Management Services</button>
+                  <button class="mega-link" onclick="showDetail('eos')" onmouseenter="setSvcImg('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80','EOS Transformation','End-to-end SAP legacy modernisation')">EOS Transformation</button>
+                  <button class="mega-link" onclick="showDetail('s4hana')" onmouseenter="setSvcImg('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80','SAP S/4HANA','Intelligent ERP — real-time, cloud-ready')">SAP S/4HANA</button>
+                  <button class="mega-link" onclick="showDetail('rise-sap')" onmouseenter="setSvcImg('https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&q=80','RISE with SAP','Complete cloud ERP as a managed service')">RISE with SAP</button>
+                  <button class="mega-link" onclick="showDetail('grow-sap')" onmouseenter="setSvcImg('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80','GROW with SAP','Fast cloud ERP for mid-market companies')">GROW with SAP</button>
+                  <button class="mega-link" onclick="showDetail('ams')" onmouseenter="setSvcImg('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80','Application Management','24/7 SAP support & continuous improvement')">Application Management Services</button>
                   <div class="mega-col-title mt-3">Operations Services</div>
-                  <button class="mega-link" onclick="showDetail('supply-chain')">Supply Chain Transformation</button>
-                  <button class="mega-link" onclick="showDetail('procurement')">Procurement Transformation</button>
-                  <button class="mega-link" onclick="showDetail('finance-trans')">Finance Transformation</button>
+                  <button class="mega-link" onclick="showDetail('supply-chain')" onmouseenter="setSvcImg('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=600&q=80','Supply Chain Transformation','End-to-end visibility & demand planning')">Supply Chain Transformation</button>
+                  <button class="mega-link" onclick="showDetail('procurement')" onmouseenter="setSvcImg('https://images.unsplash.com/photo-1444653614773-995cb1ef9efa?w=600&q=80','Procurement Transformation','Source-to-pay digitisation & supplier mgmt')">Procurement Transformation</button>
+                  <button class="mega-link" onclick="showDetail('finance-trans')" onmouseenter="setSvcImg('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80','Finance Transformation','Record-to-report & FP&A modernisation')">Finance Transformation</button>
                 </div>
                 <div>
                   <div class="mega-col-title">Digital Services</div>
-                  <button class="mega-link" onclick="showDetail('cloud-trans')">Cloud Transformation</button>
-                  <button class="mega-link" onclick="showDetail('btp')">Business Technology Platform</button>
-                  <button class="mega-link" onclick="showDetail('spend-mgmt')">Spend Management</button>
+                  <button class="mega-link" onclick="showDetail('cloud-trans')" onmouseenter="setSvcImg('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80','Cloud Transformation','Cloud-native migration & re-platforming')">Cloud Transformation</button>
+                  <button class="mega-link" onclick="showDetail('btp')" onmouseenter="setSvcImg('https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80','Business Technology Platform','Integration, AI & app development hub')">Business Technology Platform</button>
+                  <button class="mega-link" onclick="showDetail('spend-mgmt')" onmouseenter="setSvcImg('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80','Spend Management','Full visibility & control of enterprise spend')">Spend Management</button>
                   <div class="mega-col-title mt-3">Digiverz</div>
-                  <button class="mega-link" onclick="showDetail('data-eng')">Data Engineering & Science</button>
-                  <button class="mega-link" onclick="showDetail('product-eng')">Product Engineering</button>
-                  <button class="mega-link" onclick="showDetail('cloud-eng')">Cloud Engineering</button>
-                  <button class="mega-link" onclick="showDetail('bpm')">Business Process Management</button>
+                  <button class="mega-link" onclick="showDetail('data-eng')" onmouseenter="setSvcImg('https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=600&q=80','Data Engineering & Science','Pipelines, ML models & advanced analytics')">Data Engineering & Science</button>
+                  <button class="mega-link" onclick="showDetail('product-eng')" onmouseenter="setSvcImg('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=600&q=80','Product Engineering','Web, mobile & API development')">Product Engineering</button>
+                  <button class="mega-link" onclick="showDetail('cloud-eng')" onmouseenter="setSvcImg('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80','Cloud Engineering','Infrastructure as code, FinOps & SRE')">Cloud Engineering</button>
+                  <button class="mega-link" onclick="showDetail('bpm')" onmouseenter="setSvcImg('https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=600&q=80','Business Process Management','Process mining, RPA & automation')">Business Process Management</button>
                 </div>
                 <div>
                   <div class="mega-col-title">Performance Services</div>
-                  <button class="mega-link" onclick="showDetail('cx-trans')">CX Transformation</button>
-                  <button class="mega-link" onclick="showDetail('hr-trans')">Human Resource Transformation</button>
-                  <button class="mega-link" onclick="showDetail('ehs')">Environment, Health & Safety</button>
-                  <button class="mega-link" onclick="showDetail('ocm')">Organizational Change Mgmt</button>
+                  <button class="mega-link" onclick="showDetail('cx-trans')" onmouseenter="setSvcImg('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&q=80','CX Transformation','Marketing, sales & service excellence')">CX Transformation</button>
+                  <button class="mega-link" onclick="showDetail('hr-trans')" onmouseenter="setSvcImg('https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&q=80','HR Transformation','Hire-to-retire with SuccessFactors')">Human Resource Transformation</button>
+                  <button class="mega-link" onclick="showDetail('ehs')" onmouseenter="setSvcImg('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80','Environment, Health & Safety','EHS compliance, risk & sustainability')">Environment, Health & Safety</button>
+                  <button class="mega-link" onclick="showDetail('ocm')" onmouseenter="setSvcImg('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&q=80','Organizational Change Mgmt','People-centric SAP adoption')">Organizational Change Mgmt</button>
                   <div class="mega-col-title mt-3">Business Platforms</div>
-                  <button class="mega-link" onclick="showDetail('biz-analytics')">Business Analytics</button>
-                  <button class="mega-link" onclick="showDetail('dcp')">Digital Customer Platforms</button>
-                  <button class="mega-link" onclick="showDetail('liferay')">Liferay</button>
+                  <button class="mega-link" onclick="showDetail('biz-analytics')" onmouseenter="setSvcImg('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80','Business Analytics','BI, planning & predictive analytics')">Business Analytics</button>
+                  <button class="mega-link" onclick="showDetail('dcp')" onmouseenter="setSvcImg('https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=80','Digital Customer Platforms','B2B & B2C commerce solutions')">Digital Customer Platforms</button>
+                  <button class="mega-link" onclick="showDetail('liferay')" onmouseenter="setSvcImg('https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=80','Liferay','Enterprise portals & digital experiences')">Liferay</button>
                 </div>
               </div>
             </div>
+
+            <!-- Service image preview panel -->
+            <div class="ind-img-panel" id="svcImgPanel">
+              <div class="ind-img-wrap">
+                <img id="svcImg" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="Service"/>
+                <div class="ind-img-overlay">
+                  <div class="ind-img-tag" id="svcImgTag">SAP S/4HANA</div>
+                  <div class="ind-img-sub" id="svcImgSub">Intelligent ERP — real-time, cloud-ready</div>
+                </div>
+              </div>
+              <div class="svc-featured-box">
+                <div class="svc-feat-label"><i class="bi bi-star-fill me-1"></i> Featured Service</div>
+                <div class="svc-feat-title">RISE with SAP</div>
+                <div class="svc-feat-desc">Move your SAP ERP to the cloud with a single, outcome-based subscription. Includes S/4HANA Cloud, BTP, tools &amp; premium support.</div>
+                <button class="svc-feat-btn" onclick="showDetail('rise-sap')">Learn More <i class="bi bi-arrow-right"></i></button>
+              </div>
+            </div>
+
           </div>
         </div>
       </li>
