@@ -26,17 +26,33 @@
       <li class="nav-item">
         <button class="nav-link-btn">Explore Us <i class="bi bi-chevron-down chevron"></i></button>
         <div class="mega-drop">
-          <div class="mega-wrap">
+          <div class="mega-wrap" style="gap:2rem">
             <div class="mega-label-col"><div class="mega-label">Explore Us</div></div>
             <div class="mega-content">
               <div class="mega-cards">
-                <a class="mega-card" onclick="showDetail('about-us')"><strong>About SAP Platform</strong><span>Unveiling our 20+ years journey to Digital Excellence</span></a>
-                <a class="mega-card" onclick="showDetail('leadership')"><strong>Leadership</strong><span>Guiding Visions, Sculpting Success: Our Leadership Story</span></a>
-                <a class="mega-card" onclick="showDetail('awards')"><strong>Awards & Achievements</strong><span>Championing our Success: Our Journey, Our Triumphs!</span></a>
-                <a class="mega-card" onclick="showDetail('commitment')"><strong>Commitment To People</strong><span>More Than just Words: A Cultural Commitment</span></a>
-                <a class="mega-card" onclick="showDetail('clients')"><strong>How We Work With Clients</strong><span>Crafting innovative solutions for your Digital Needs</span></a>
-                <a class="mega-card" onclick="showDetail('investors')"><strong>Investor Relations</strong><span>Earning Investor trust, Fueling Growth Beyond Expectations</span></a>
-                <a class="mega-card" onclick="showDetail('analyst')"><strong>Analyst Recognitions</strong><span>Spotlighting Our Top Analyst-acclaimed Expertise & Leadership</span></a>
+                <a class="mega-card" onclick="showDetail('about-us')" onmouseenter="setExploreImg('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80','About SAP Platform','20+ years of digital excellence worldwide')"><strong>About SAP Platform</strong><span>Unveiling our 20+ years journey to Digital Excellence</span></a>
+                <a class="mega-card" onclick="showDetail('leadership')" onmouseenter="setExploreImg('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&q=80','Leadership','Visionary leaders shaping SAP Platform')"><strong>Leadership</strong><span>Guiding Visions, Sculpting Success: Our Leadership Story</span></a>
+                <a class="mega-card" onclick="showDetail('awards')" onmouseenter="setExploreImg('https://images.unsplash.com/photo-1567427018141-0584cfcbf1b8?w=600&q=80','Awards & Achievements','50+ industry recognitions globally')"><strong>Awards & Achievements</strong><span>Championing our Success: Our Journey, Our Triumphs!</span></a>
+                <a class="mega-card" onclick="showDetail('commitment')" onmouseenter="setExploreImg('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80','Commitment To People','Culture, wellbeing & growth for every employee')"><strong>Commitment To People</strong><span>More Than just Words: A Cultural Commitment</span></a>
+                <a class="mega-card" onclick="showDetail('clients')" onmouseenter="setExploreImg('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80','How We Work With Clients','Collaborative delivery from discovery to go-live')"><strong>How We Work With Clients</strong><span>Crafting innovative solutions for your Digital Needs</span></a>
+                <a class="mega-card" onclick="showDetail('investors')" onmouseenter="setExploreImg('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80','Investor Relations','Consistent growth, strong financials & transparency')"><strong>Investor Relations</strong><span>Earning Investor trust, Fueling Growth Beyond Expectations</span></a>
+                <a class="mega-card" onclick="showDetail('analyst')" onmouseenter="setExploreImg('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80','Analyst Recognitions','Gartner, Forrester & IDC recognised expertise')"><strong>Analyst Recognitions</strong><span>Spotlighting Our Top Analyst-acclaimed Expertise & Leadership</span></a>
+              </div>
+            </div>
+            <!-- Explore Us image panel -->
+            <div class="ind-img-panel" id="exploreImgPanel">
+              <div class="ind-img-wrap">
+                <img id="exploreImg" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80" alt="Explore Us"/>
+                <div class="ind-img-overlay">
+                  <div class="ind-img-tag" id="exploreImgTag">About SAP Platform</div>
+                  <div class="ind-img-sub" id="exploreImgSub">20+ years of digital excellence worldwide</div>
+                </div>
+              </div>
+              <div class="svc-featured-box">
+                <div class="svc-feat-label"><i class="bi bi-building-fill me-1"></i>Our Story</div>
+                <div class="svc-feat-title">20+ Years of SAP Excellence</div>
+                <div class="svc-feat-desc">From a regional SAP partner to a globally recognised digital transformation leader across 180+ countries and 440K+ clients.</div>
+                <button class="svc-feat-btn" onclick="showDetail('about-us')">Our Journey <i class="bi bi-arrow-right"></i></button>
               </div>
             </div>
           </div>
@@ -181,13 +197,29 @@
       <li class="nav-item">
         <button class="nav-link-btn">Innovation <i class="bi bi-chevron-down chevron"></i></button>
         <div class="mega-drop">
-          <div class="mega-wrap">
+          <div class="mega-wrap" style="gap:2rem">
             <div class="mega-label-col"><div class="mega-label">Innovation</div></div>
             <div class="mega-content">
               <div class="mega-cards" style="grid-template-columns:repeat(3,1fr)">
-                <a class="mega-card" onclick="showDetail('ktern')"><strong>KTern.AI</strong><span>Accelerate, optimize, govern for successful SAP investments</span></a>
-                <a class="mega-card" onclick="showDetail('kebs')"><strong>KEBS</strong><span>Unified solution integrating key departments for business efficiency</span></a>
-                <a class="mega-card" onclick="showDetail('technologies')"><strong>Technologies</strong><span>Authorized reseller and trusted partner for leading enterprise technologies</span></a>
+                <a class="mega-card" onclick="showDetail('ktern')" onmouseenter="setInnoImg('https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80','KTern.AI','AI-native SAP transformation platform')"><strong>KTern.AI</strong><span>Accelerate, optimize, govern for successful SAP investments</span></a>
+                <a class="mega-card" onclick="showDetail('kebs')" onmouseenter="setInnoImg('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80','KEBS','Unified business management platform')"><strong>KEBS</strong><span>Unified solution integrating key departments for business efficiency</span></a>
+                <a class="mega-card" onclick="showDetail('technologies')" onmouseenter="setInnoImg('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80','Technologies','Reseller & partner for Azure, AWS, GCP')"><strong>Technologies</strong><span>Authorized reseller and trusted partner for leading enterprise technologies</span></a>
+              </div>
+            </div>
+            <!-- Innovation image panel -->
+            <div class="ind-img-panel" id="innoImgPanel">
+              <div class="ind-img-wrap">
+                <img id="innoImg" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80" alt="Innovation"/>
+                <div class="ind-img-overlay">
+                  <div class="ind-img-tag" id="innoImgTag">KTern.AI</div>
+                  <div class="ind-img-sub" id="innoImgSub">AI-native SAP transformation platform</div>
+                </div>
+              </div>
+              <div class="svc-featured-box">
+                <div class="svc-feat-label"><i class="bi bi-robot me-1"></i>Flagship Product</div>
+                <div class="svc-feat-title">KTern.AI</div>
+                <div class="svc-feat-desc">The only AI-native platform purpose-built to accelerate SAP projects — 60% faster delivery, 40% cost reduction, 95% risk reduction.</div>
+                <button class="svc-feat-btn" onclick="showDetail('ktern')">Explore KTern.AI <i class="bi bi-arrow-right"></i></button>
               </div>
             </div>
           </div>
@@ -198,31 +230,47 @@
       <li class="nav-item">
         <button class="nav-link-btn">Insights <i class="bi bi-chevron-down chevron"></i></button>
         <div class="mega-drop">
-          <div class="mega-wrap">
+          <div class="mega-wrap" style="gap:2rem">
             <div class="mega-label-col"><div class="mega-label">Insights</div></div>
             <div class="mega-content">
               <div class="mega-cols cols-3">
                 <div>
                   <div class="mega-col-title">Knowledge Hub</div>
-                  <button class="mega-link" onclick="showDetail('blog')">Blog & Articles</button>
-                  <button class="mega-link" onclick="showDetail('whitepapers')">Whitepapers</button>
-                  <button class="mega-link" onclick="showDetail('case-studies')">Case Studies</button>
-                  <button class="mega-link" onclick="showDetail('research')">Research Reports</button>
+                  <button class="mega-link" onclick="showDetail('blog')" onmouseenter="setInsightsImg('https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&q=80','Blog & Articles','Expert SAP perspectives & industry trends')">Blog & Articles</button>
+                  <button class="mega-link" onclick="showDetail('whitepapers')" onmouseenter="setInsightsImg('https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=600&q=80','Whitepapers','Research-backed technical documentation')">Whitepapers</button>
+                  <button class="mega-link" onclick="showDetail('case-studies')" onmouseenter="setInsightsImg('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80','Case Studies','500+ real-world client success stories')">Case Studies</button>
+                  <button class="mega-link" onclick="showDetail('research')" onmouseenter="setInsightsImg('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80','Research Reports','Original SAP adoption benchmarks & trends')">Research Reports</button>
                 </div>
                 <div>
                   <div class="mega-col-title">Events & Media</div>
-                  <button class="mega-link" onclick="showDetail('webinars')">Webinars</button>
-                  <button class="mega-link" onclick="showDetail('events')">Events & Conferences</button>
-                  <button class="mega-link" onclick="showDetail('videos')">Videos & Podcasts</button>
-                  <button class="mega-link" onclick="showDetail('press')">Press Releases</button>
+                  <button class="mega-link" onclick="showDetail('webinars')" onmouseenter="setInsightsImg('https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=600&q=80','Webinars','Live & on-demand SAP expert sessions')">Webinars</button>
+                  <button class="mega-link" onclick="showDetail('events')" onmouseenter="setInsightsImg('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80','Events & Conferences','Global SAP summits & executive roundtables')">Events & Conferences</button>
+                  <button class="mega-link" onclick="showDetail('videos')" onmouseenter="setInsightsImg('https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=600&q=80','Videos & Podcasts','Product demos, testimonials & SAP podcast')">Videos & Podcasts</button>
+                  <button class="mega-link" onclick="showDetail('press')" onmouseenter="setInsightsImg('https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=80','Press Releases','Official news & announcements')">Press Releases</button>
                 </div>
                 <div>
                   <div class="mega-col-title">Trending Topics</div>
-                  <button class="mega-link" onclick="showDetail('gen-ai')">Generative AI in ERP</button>
-                  <button class="mega-link" onclick="showDetail('cloud-migration')">Cloud Migration</button>
-                  <button class="mega-link" onclick="showDetail('s4hana-trends')">SAP S/4HANA Trends</button>
-                  <button class="mega-link" onclick="showDetail('sustainability')">Sustainability</button>
+                  <button class="mega-link" onclick="showDetail('gen-ai')" onmouseenter="setInsightsImg('https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80','Generative AI in ERP','How AI is reshaping enterprise software')">Generative AI in ERP</button>
+                  <button class="mega-link" onclick="showDetail('cloud-migration')" onmouseenter="setInsightsImg('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80','Cloud Migration','Risk-managed SAP migration guide')">Cloud Migration</button>
+                  <button class="mega-link" onclick="showDetail('s4hana-trends')" onmouseenter="setInsightsImg('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80','SAP S/4HANA Trends','Latest 2025 innovations & roadmap')">SAP S/4HANA Trends</button>
+                  <button class="mega-link" onclick="showDetail('sustainability')" onmouseenter="setInsightsImg('https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=600&q=80','Sustainability & ESG','Carbon accounting & green enterprise')">Sustainability</button>
                 </div>
+              </div>
+            </div>
+            <!-- Insights image panel -->
+            <div class="ind-img-panel" id="insightsImgPanel">
+              <div class="ind-img-wrap">
+                <img id="insightsImg" src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&q=80" alt="Insights"/>
+                <div class="ind-img-overlay">
+                  <div class="ind-img-tag" id="insightsImgTag">Blog & Articles</div>
+                  <div class="ind-img-sub" id="insightsImgSub">Expert SAP perspectives & industry trends</div>
+                </div>
+              </div>
+              <div class="svc-featured-box">
+                <div class="svc-feat-label"><i class="bi bi-fire me-1"></i>Trending Now</div>
+                <div class="svc-feat-title">Generative AI in SAP ERP</div>
+                <div class="svc-feat-desc">How SAP Joule and embedded AI are transforming finance, supply chain, and HR — with real-world business impact data from 500+ deployments.</div>
+                <button class="svc-feat-btn" onclick="showDetail('gen-ai')">Read Article <i class="bi bi-arrow-right"></i></button>
               </div>
             </div>
           </div>
@@ -233,31 +281,47 @@
       <li class="nav-item">
         <button class="nav-link-btn">Careers <i class="bi bi-chevron-down chevron"></i></button>
         <div class="mega-drop">
-          <div class="mega-wrap">
+          <div class="mega-wrap" style="gap:2rem">
             <div class="mega-label-col"><div class="mega-label">Careers</div></div>
             <div class="mega-content">
               <div class="mega-cols cols-3">
                 <div>
                   <div class="mega-col-title">Join Our Team</div>
-                  <button class="mega-link" onclick="showDetail('open-positions')">Open Positions</button>
-                  <button class="mega-link" onclick="showDetail('life-at-sap')">Life at SAP Platform</button>
-                  <button class="mega-link" onclick="showDetail('benefits')">Employee Benefits</button>
-                  <button class="mega-link" onclick="showDetail('diversity')">Diversity & Inclusion</button>
+                  <button class="mega-link" onclick="showDetail('open-positions')" onmouseenter="setCareersImg('https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&q=80','Open Positions','10 live roles across India, US & Europe')">Open Positions</button>
+                  <button class="mega-link" onclick="showDetail('life-at-sap')" onmouseenter="setCareersImg('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80','Life at SAP Platform','Collaborative culture across 25 offices')">Life at SAP Platform</button>
+                  <button class="mega-link" onclick="showDetail('benefits')" onmouseenter="setCareersImg('https://images.unsplash.com/photo-1559523161-0fc0d8b814b4?w=600&q=80','Employee Benefits','Health, wealth & learning investment')">Employee Benefits</button>
+                  <button class="mega-link" onclick="showDetail('diversity')" onmouseenter="setCareersImg('https://images.unsplash.com/photo-1573164713988-8665fc963095?w=600&q=80','Diversity & Inclusion','40+ nationalities, 44% women in workforce')">Diversity & Inclusion</button>
                 </div>
                 <div>
                   <div class="mega-col-title">Programs</div>
-                  <button class="mega-link" onclick="showDetail('graduate')">Graduate Program</button>
-                  <button class="mega-link" onclick="showDetail('internship')">Internship Program</button>
-                  <button class="mega-link" onclick="showDetail('leadership-dev')">Leadership Development</button>
-                  <button class="mega-link" onclick="showDetail('sap-cert')">SAP Certification Support</button>
+                  <button class="mega-link" onclick="showDetail('graduate')" onmouseenter="setCareersImg('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&q=80','Graduate Program','2-year structured SAP career launch')">Graduate Program</button>
+                  <button class="mega-link" onclick="showDetail('internship')" onmouseenter="setCareersImg('https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&q=80','Internship Program','12-week paid internship, 75% conversion rate')">Internship Program</button>
+                  <button class="mega-link" onclick="showDetail('leadership-dev')" onmouseenter="setCareersImg('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&q=80','Leadership Development','From consultant to leader pathways')">Leadership Development</button>
+                  <button class="mega-link" onclick="showDetail('sap-cert')" onmouseenter="setCareersImg('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80','SAP Certification Support','100% exam fee coverage & study leave')">SAP Certification Support</button>
                 </div>
                 <div>
                   <div class="mega-col-title">Why Work With Us</div>
-                  <button class="mega-link" onclick="showDetail('culture')">Our Culture</button>
-                  <button class="mega-link" onclick="showDetail('learning')">Learning & Growth</button>
-                  <button class="mega-link" onclick="showDetail('global-ops')">Global Opportunities</button>
-                  <button class="mega-link" onclick="showDetail('employer-awards')">Awards as Employer</button>
+                  <button class="mega-link" onclick="showDetail('culture')" onmouseenter="setCareersImg('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80','Our Culture','Innovation, integrity & inclusion')">Our Culture</button>
+                  <button class="mega-link" onclick="showDetail('learning')" onmouseenter="setCareersImg('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600&q=80','Learning & Growth','10,000+ courses & annual learning budget')">Learning & Growth</button>
+                  <button class="mega-link" onclick="showDetail('global-ops')" onmouseenter="setCareersImg('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80','Global Opportunities','25 offices, 180+ countries served')">Global Opportunities</button>
+                  <button class="mega-link" onclick="showDetail('employer-awards')" onmouseenter="setCareersImg('https://images.unsplash.com/photo-1567427018141-0584cfcbf1b8?w=600&q=80','Awards as Employer','Great Place to Work in 8 countries')">Awards as Employer</button>
                 </div>
+              </div>
+            </div>
+            <!-- Careers image panel -->
+            <div class="ind-img-panel" id="careersImgPanel">
+              <div class="ind-img-wrap">
+                <img id="careersImg" src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&q=80" alt="Careers"/>
+                <div class="ind-img-overlay">
+                  <div class="ind-img-tag" id="careersImgTag">Open Positions</div>
+                  <div class="ind-img-sub" id="careersImgSub">10 live roles across India, US & Europe</div>
+                </div>
+              </div>
+              <div class="svc-featured-box">
+                <div class="svc-feat-label"><i class="bi bi-briefcase-fill me-1"></i>We're Hiring</div>
+                <div class="svc-feat-title">Join 5,000+ SAP Professionals</div>
+                <div class="svc-feat-desc">SAP S/4HANA consultants, BTP developers, data engineers, and project managers — find your next role and grow your SAP career with us.</div>
+                <button class="svc-feat-btn" onclick="showDetail('open-positions')">View Open Roles <i class="bi bi-arrow-right"></i></button>
               </div>
             </div>
           </div>
